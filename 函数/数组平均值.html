@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //创建数组
+        var arr = [1, 2, 3, 4, 6];
+        //封装函数求平均值
+        function avg(array) {
+            // var len = arr.length;
+            var sum = 0;
+            //遍历数组
+            for (var i = 0; i < arr.length; i++) {
+                //求数组的和
+                sum += array[i];
+            }
+            //返回平均值
+            return sum / arr.length;
+        }
+        //调用函数并输出结果
+        console.log(avg(arr));
+    </script>
+</body>
+</html>

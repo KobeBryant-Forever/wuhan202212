@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        function rand(min, max) {
+            var n = parseInt(Math.random() * (max - min)) + min;
+            return n;
+        }
+
+
+
+        // // 方法1 假设法
+        // function isZhi(n) {
+
+        //     // 假设结果是质数
+        //     var res = true ;
+        //     for(var i = 2 ; i < n ; i++) {
+        //         if(n % i === 0) {
+        //             res = false ;
+        //             // 如果已经被整除了，说明不是只是，不需要继续判断了
+        //             break ;   // 优化
+        //         }
+        //     }
+
+        //     return res ;
+
+        // }
+
+
+        // // 方法2  提前结束循环 ， 判断i的值
+        // function isZhi(n) {
+        //     for(var i = 2; i < n ; i++) {
+        //         if(n % i === 0)  break ;
+        //     }
+
+        //     // 循环结束后判断i的值
+        //     // if(i === n) {
+        //     //     return true
+        //     // } else {
+        //     //     return false
+        //     // }
+        //     // return i === n ? true : false ;
+
+        //     return i === n ;
+        // }
+
+
+
+        // 方法3 ： 提前return
+        // function isZhi(n) {
+        //     if (n === 0 || n === 1) {
+        //         alert(n + '既不是质数也不是合数');
+
+        //     } else {
+        //         for (var i = 2; i < n; i++) {
+        //             if (n % i === 0) {
+        //                 // 如果提前结束就  false
+        //                 return false;
+        //             }
+        //         }
+        //         // 如果没有提前结束函数，说明就是质数
+        //         return true;
+        //     }
+
+        // }
+
+        // 少写了else 
+        function isZhi(n) {
+            if (n === 0 || n === 1) {
+                alert(n + '既不是质数也不是合数');
+                return;  // 单纯的提前结束函数
+            }
+            for (var i = 2; i < n; i++) {
+                if (n % i === 0) {
+                    // 如果提前结束就  false
+                    return false;
+                }
+            }
+            // 如果没有提前结束函数，说明就是质数
+            return true;
+        }
+
+
+
+
+        // 产生一个随机数，判断是不是质数
+        var n = rand(0, 100);
+        var res = isZhi(n);
+        res ? document.write(n + '是质数') : document.write(n + '不是质数');
+
+    </script>
+
+</body>
+
+</html>

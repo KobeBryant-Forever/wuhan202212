@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+
+        // 思路：把要求的结果放在变量中
+        //    一开始就声明一个变量，res
+        //   满足条件的时候，就把这个结果存入res中
+        //   再有其他值的时候，继续存在res中   实际上会覆盖
+        //   最大的值也是替换的最后一个值  
+
+        // 最大公约数
+        // var n1 = 6 , n2 = 8 ;
+        // // 求最大公约数 
+        // var res ;
+        // for(var i = 1 ; i <= 6 ; i++) {
+        //     if(n1 % i === 0 && n2 % i === 0) {
+        //         res = i ;
+        //     }
+        // }
+        // console.log(res);
+
+
+
+        // 最小公倍数
+        //    6   8 
+        //    8%6  8%8
+        //    9%6  9%8
+        //    10%6 10%8
+        //    11%6  11%8
+        //    12%6  12%8
+        //    ...
+        //    24%6  24%8    24 就是最小公倍数
+
+        // 分析：求最小公倍数   
+        // var n1 = 6 , n2 = 8 ;
+        // var res ;  // 存最终的结果
+        // for(var i = n2 ;  ; i++) {   // 如果没有写循环结束的条件，会死循环，所以在满足条件以后跳出break
+        //     if(i % n1 === 0 && i % n2 === 0) {
+        //         res = i ;
+        //         break ;  // 必须写break
+        //     }
+        // }
+
+
+        // 封装成函数 : 找两个数的最小公倍数
+        // 想把结果放在任意的地方，所以这个结果显示的地方不能写在函数里面
+
+
+        // function gbs(n1 , n2) {
+        //     // var n1 = 6 , n2 = 8 ;  // 提取为参数
+        //     var res ;  // 存最终的结果
+        //     for(var i = n2 ;  ; i++) {   // 如果没有写循环结束的条件，会死循环，所以在满足条件以后跳出break
+        //         if(i % n1 === 0 && i % n2 === 0) {
+        //             res = i ;
+        //             // document.write(res) ;
+        //             break ;  // 必须写break
+        //         }
+        //     }
+        //     // document.write(res) ;
+        //     return res ;
+
+        // }
+
+
+
+        // 优化
+        //    return 提前结束函数
+        //    循环的起始值是两个数中较大的那一个
+        function gbs(n1 , n2) {
+            // var n1 = 6 , n2 = 8 ;  // 提取为参数
+            var res ;  // 存最终的结果
+            // 起始值是较大的那一个
+            for(var i = n1 > n2 ? n1 : n2 ;  ; i++) {   // 如果没有写循环结束的条件，会死循环，所以在满足条件以后跳出break
+                if(i % n1 === 0 && i % n2 === 0) {
+                    res = i ;
+                    // return res;   // return会提前结束函数，也就结束了循环
+                    return i ;
+                    
+                    // break ;  // 必须写break
+                }
+            }
+           
+        }
+
+        // 函数有了返回值以后，必须输出,而不是直接调用就完了
+        
+        document.write(gbs(6,8)) ;
+
+        console.log(gbs(12,16)) ;
+
+        var m = gbs(16,8) ;
+        alert(m);
+
+    </script>
+    
+</body>
+</html>

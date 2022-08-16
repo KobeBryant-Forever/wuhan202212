@@ -1,0 +1,33 @@
+<DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p id="p">四种方案</p>
+    <script>
+        // 公鸡最多20只，
+        for (var a = 0; a < 20; a++) {
+            //母鸡最多买33只
+            for (var b = 0; b < 33; b++) {
+                // 一共100只鸡,小鸡鸡数量=100-公鸡数-母鸡数
+                var c = 100 - a - b;
+                // 3种鸡的价钱起来一共一百钱
+                if (a * 5 + b * 3 + c / 3 == 100) {
+
+                    document.write('购买方案有:' + '公鸡是' + a + '只' + '&nbsp;&nbsp;&nbsp', '母鸡是' + b + '只' + '&nbsp;&nbsp;&nbsp', '小鸡是 ' + c + '只' + '<br>');
+                    document.getElementById('p').innerHTML = '';
+                    //   一共四种购买方案
+                }
+            }
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var b=Math.random()
+        var b=b*9000+1000
+        var b=Math.floor(b)
+        // var b=Math.floor(b*10000)   
+        var c=Math.floor(b/3600)
+        var d=Math.floor(b%3600/60)
+        var e=Math.floor(b%3600%60)
+        document.write('随机时间为:'+ b,'转换为:' + c+"时",d+"分",e+"秒")
+      </script>
+</body>
+</html>

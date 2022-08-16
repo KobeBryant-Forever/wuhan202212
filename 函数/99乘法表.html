@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span{
+            display: inline-block;
+            width: 90px;
+            border: 1px solid red;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // function chengfa(n,m){
+        //     for(var n = 1;n<= 6 ; n++){
+        //         for(var j=1;j<=n;j++){
+        //             document.write('<span>' + j+ '*' + n + '=' + (j*n)+ '</span>');
+        //         }
+        //         document.write('<br>')
+        //     }
+        // }
+        // //函数调用
+        // chengfa(6,7);
+    //   
+            var res;
+            function num (a,b,c){
+                switch(c){
+                    case '+':
+                        document.write(a + b);
+                        break;
+                    case '-':
+                        console.log(a - b);
+                        break;
+                    case '*':
+                        console.log(a * b);
+                        break;
+                    case '/':
+                        console.log(a / b);
+                }
+                return res;
+            }
+            // num = num(4,1)
+            var res = num(5,1,'-')
+        
+    </script>
+</body>
+</html>
+<!-- isNaN -->

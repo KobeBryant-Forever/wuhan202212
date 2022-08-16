@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var count = 0;
+        for (i = 2; i < 100; i++) {
+            var flag = true;
+            
+            for (var j = 2; j < i; j++) {
+                //判断是否为质素，让i和前面的相除，若结果为0，则不是质数
+               
+                if (i % j == 0) {
+                    flag = false;
+                }
+                
+            }
+            //如果为真，输出1-100之间质数
+            if (flag) {
+                count++
+                //每十个换一行
+                if (count % 10 == 0) {
+                    document.write('<br>')
+                   
+                }
+                document.write('&nbsp' + i);
+                
+            }
+        }
+        
+
+
+
+
+    </script>
+</body>
+
+</html>

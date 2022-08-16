@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+    <script>
+        /*
+            某人在银行有50000元存款。银行每月都要收取服务费，存款大于5000元时每个月收取总额的5%，总额不大于5000元的时候不收服务费；假设这个人存了以后从来都不用，用循环计算银行要扣这个人的手续费能扣多少次？每次扣取后剩余多少钱？
+        
+        
+        */
+
+        var num = 50000
+        var count = 0
+
+        for (; ;) {
+            num = num * 0.95
+            count++
+            console.log(num, count)
+            if (num < 5000) {
+                break
+            }
+        }
+
+
+
+    </script>
+</body>
+
+</html>

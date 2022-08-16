@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算器</title>
+    <style>
+        body{
+            margin: auto;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!--容器-->
+    <form action="">
+    <div>
+        <h1>简易计算器</h1>
+        <!--main-->
+        
+        <!-- <div> -->
+            
+            <p>第1个数：<input type="text" id="oneNumber" /></p>
+
+            <p>第2个数：<input type="text" id="twoNumber" /></p>
+
+            <p id="warn1"></p>
+            <p id="warn"></p>
+            <input  type="button" onclick="count(1)"  value="+" />
+            <input type="button" onclick="count(2)" value="-" />
+            <input type="button" onclick="count(3)" value="*" />
+            <input type="button" onclick="count(4)" value="/" /><br>
+            结果：<span id = "result" type="text"></span>
+            
+            
+        <!-- </div> -->
+        
+        
+    </div>
+    <!-- <input type="reset"> -->
+</form>
+    <script>
+        function count(a) {
+            var oneNumber = document.getElementById("oneNumber").value * 1;//获取用户输入的值并转换成数字
+            var twoNumber = document.getElementById("twoNumber").value * 1;//获取用户输入的值并转换成数字
+            var result;
+            if (isNaN(oneNumber) || isNaN(twoNumber)) {   //判断输入内容是否为数字，不是数字的话，进行错误提示。
+                // document.getElementById("warn1").innerHTML = "输入的不是数字，请重新输入！"
+                alert('只能输入纯数字')
+                return;
+            }
+            //实现加减乘除算法
+            switch (a) {
+                case 1:
+                    result = oneNumber + twoNumber;
+                    break;
+                case 2:
+                    result = oneNumber - twoNumber;
+                    break;
+                case 3:
+                    result = oneNumber * twoNumber;
+                    break;
+                case 4:
+                    if (twoNumber == 0) {   //判断分母是否为0
+                        alert('被除数不能为0')
+                        return;
+                    }
+                    result = oneNumber / twoNumber;
+                    
+                    // result.toFixed(2);
+                    break;
+            }
+            document.getElementById("result").innerHTML = result;//显示计算结果
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>

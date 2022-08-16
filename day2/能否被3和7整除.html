@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // var num = Math.random();
+        var num1 = Math.floor(Math.random() * 990 + 10);
+        // num1 = 2000;
+        document.write(num1);
+        //被三和7整除
+        if (num1 % 3 == 0 && num1 % 7 == 0) {
+            document.write('这个数能同时被3和7整除')
+        } else {
+            document.write("这个数是不能同时被3和7整除")
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var num = Math.random();
+        num1 = Math.floor(Math.random() * 22 + 2000);
+        // num1 = 2000;
+        document.write(num1);
+        //判断闰年平年
+        if (num1 % 4 == 0 && num1 % 100 != 0) {
+            document.write('是闰年')
+        } else if (num1 % 400 == 0) {
+            document.write("是闰年")
+        } else {
+            document.write("不是闰年")
+        }
+    </script>
+</body>
+
+</html>

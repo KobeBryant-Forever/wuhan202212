@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+
+        // var m = parseInt('20.5') ;
+        // console.log(m);  // 数字
+
+
+        function rand(min , max) {
+            var n = parseInt(Math.random() * (max - min)) + min ;
+            return n ;
+        }
+
+        // 随机5位数字验证码
+
+        // 会发现第一位不可能是0
+        // var m = rand(10000 , 100000) ;
+        // document.write(m) ;
+
+        // 优化
+        //   每一位都是0-9   一位一位的产生
+        // //   结果其实是一个字符串  03214  
+        // var n1 = rand(0,10) ;
+        // var n2 = rand(0,10) ;
+        // var n3 = rand(0,10) ;
+        // var n4 = rand(0,10) ;
+        // var n5 = rand(0,10) ;
+        // // document.write(n1);
+        // // document.write(n2);
+        // // document.write(n3);
+        // // document.write(n4);
+        // // document.write(n5);
+        // // 
+        // document.write('' + n1 + n2 + n3 + n4 + n5);
+
+
+        // 思考参数
+        function code(n) {
+            var res = '';
+            for(var i = 0 ; i < n ; i++) {
+                var n1 = rand(0,10) ;
+                res += n1 ;
+            }
+            return res
+        }
+
+
+        document.write(code(10))
+
+
+    </script>
+    
+</body>
+</html>

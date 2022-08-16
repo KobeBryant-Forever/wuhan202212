@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+
+    <script>
+        /*
+            判断一年中的第几天
+            思路
+            5
+            1月的天数 + 2月的天数 + 3月的天数 + 4月的天数 + 25
+
+            先循环出之前的每一个月
+            求出所需的月数的总和
+
+        
+        */
+
+        var year = parseInt(prompt('请输入年'))
+        var month =parseInt (prompt('请输入月'))
+        var day = parseInt(prompt('请输入天'))
+        var startMonth = month
+        // 定义一个之前月的所有天数的总和
+        var sumDay = 0
+     
+        while (month > 1) {
+            
+            switch (month - 1) {
+                case 1:
+                case 3:
+                case 5:
+                case 7:
+                case 8:
+                case 10:
+                case 12:
+                    sumDay += 31
+                    break
+                case 4:
+                case 6:
+                case 9:
+                case 11:
+                    sumDay += 30
+                    break
+                case 2:
+                    if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
+                        sumDay += 29;
+
+                    }else {
+                        sumDay += 28
+                    }
+                    
+                    break
+
+            }
+
+
+
+
+            month--
+        }
+
+        console.log(sumDay)
+
+        var res = day + sumDay
+        document.write(year + '年' + startMonth + '月' + day + '天是这一年的第' + res + '天')
+
+    </script>
+</body>
+
+</html>

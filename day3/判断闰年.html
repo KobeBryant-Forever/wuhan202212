@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            /* margin: center; */
+            text-align: center;
+            /* padding: auto; */
+        }
+    </style>
+</head>
+
+<body>
+
+    <input type="text" name="" id="year" placeholder="请输入要判断的年份">
+    <button type="button" id="button">判断</button>
+    <input type="text" name="" id="result">
+    <script>
+        //获取页面元素
+        var year = document.getElementById('year');
+        var result = document.getElementById('result');
+        var btn = document.getElementById('btn');
+       
+
+        // 给按钮绑定点击事件
+        button.onclick = function () {
+            //获取用户输入的值
+            var value = year.value * 1;
+            //条件触发执行的代码
+            if (year.value == '') {
+                alert('请输入年份再判断')
+                
+            } else if(value % 4 == 0 && value % 100 != 0 || value % 400 == 0) {
+                result.value = value + '是闰年';
+               
+            }else{
+                result.value = value + '是平年';
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>

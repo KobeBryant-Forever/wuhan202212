@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="">
+        <div>
+    <input type="text" name="" id="one">
+    <!-- <p id="warn1"></p> -->
+        <input  type="button" onclick="count(1)"  value="+" />
+            <input type="button" onclick="count(2)" value="-" />
+            <input type="button" onclick="count(3)" value="*" />
+            <input type="button" onclick="count(4)" value="/" />
+    <input type="text" name="" id="two">
+    <button id="btn">=</button>
+    结果为：<span id="three">
+    </div>
+<button type="reset">重置</button>
+    </form>
+    <script>
+        function count(a) {
+            var sel = document.getElementById("sel")
+            var one = document.getElementById("one").value * 1;//获取用户输入的值并转换成数字
+            var two = document.getElementById("two").value * 1;//获取用户输入的值并转换成数字
+            var three;
+            if (isNaN(one) || isNaN(two)) {   //判断输入内容是否为数字，不是数字的话，进行错误提示。
+                // document.getElementById("warn1").innerHTML = "输入的不是数字，请重新输入！"
+                alert('只能输入纯数字')
+                return;
+            }
+            //实现加减乘除算法
+            switch (a) {
+                case 1:
+                    three = one + two;
+                    break;
+                case 2:
+                    three = one - two;
+                    break;
+                case 3:
+                    three= one * two;
+                    break;
+                case 4:
+                    if (two == 0) {   //判断分母是否为0
+                        alert('被除数不能为0')
+                        return;
+                    }
+                    three = one / two;
+                    
+                    // result.toFixed(2);
+                    break;
+            }
+            document.getElementById("three").innerHTML = three;//显示计算结果
+            // console.log(three)
+        }
+
+
+        /*
+         1.用户输入年月日，判断日期输入是否合法,并将提示放在输入框内
+            年的合法1000 - 9999  闰年的2月是29 平年28
+         2.判断一个日期是一年中的第几天 year = 2016 month = 3 day = 25
+            while + switch
+         3.简易计算器
+         4.一个新入职的员工月工资是2000，每年涨幅5%，20年后月工资是多少？
+         5.输出100 - 200之间所有能同时被3和7整除的数
+         6.求10的阶乘 1*2*3*4*...10
+         7.求1+3+5+7+..99 的和
+         8.输出100以内的质数，10个换行
+         9.随机生成5为数字的验证码 // 通过循环去做
+         10.99乘法表
+         11.输出100 - 999之间的水仙花数
+            123   
+            1*1*1 + 2*2*2 + 3*3*3 == 123
+         12.篮球从5米高的地方掉下来，每次弹起的高度是原来的30%，经过几次弹起，篮球的高度小于0.1米。
+         13.某人在银行有50000元存款。银行每月都要收取服务费，存款大于5000元时每个月收取总额的5%，总额不大于5000元的时候不收服务费；假设这个人存了以后从来都不用，用循环计算银行要扣这个人的手续费能扣多少次？每次扣取后剩余多少钱？
+
+         14.打印三角形
+
+         *
+         *
+         * 
+         * 
+         * 
+         
+         *****
+         *****
+         *****
+         *****
+         *****
+
+         *
+         **
+         ***
+         ****
+         *****
+
+         *****
+         ****
+         ***
+         **
+         *
+         
+           *
+          * *
+         * * *
+        * * * *
+       * * * * *
+
+
+         
+        
+        */
+       
+
+    </script>
+</body>
+
+</html>

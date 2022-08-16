@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        var h = 10;//初始高度
+        var s = 0;//保存当每次弹起时经过的距离
+        var sum = 0;//总距离
+        for (var i = 1; i <= 10; i++) {
+            s = h + h / 2;//当次弹起时经过的距离h = h/2 ;
+            sum +=s;//下一次弹起走过的距离sum += s
+        }
+        document.write('皮球总过经历了' + sum + '米的距离')
+
+        
+    </script>
+</body>
+
+</html>

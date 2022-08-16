@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // var a,b;
+        // // a = parseInt(prompt(Math.random()*999 + 1));
+        // // b = parseInt(prompt(Math.random()*999+1));
+        // // a = 8
+        // // b = 10;
+
+        function gbs(a, b) {
+            //     // var c = a * b;
+            // var res;
+            for (var i = b; ; i++) {
+                /* 一开始就默认从输入的两个数中的最大开始，直到有把输入的两个数取余为0就结束循环，这是遇到的第一个这样的数字
+                就为该两个数的最小公倍数*/
+                if (i % a == 0 && i % b == 0) {
+                    
+                    return i;
+                }
+            }
+            // return res;//返回值
+        }
+        gbs(6, 3);//函数调用
+        console.log(gbs(6, 3));
+        console.log(gbs(4, 5));
+        console.log(gbs(10,20))
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
