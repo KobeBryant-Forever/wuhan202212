@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*假设数组元素的第一个就是最大的，然后通过循环让他一次去和其它元素比较
+        每循环一次得得到的结果都会覆盖前面一次的，直到找出最大的一个
+        
+        */
+        //随机创建一个数组
+        var arr = [5, 8, 15, 82, 98, 52, 100];
+
+        //假设数组中第一个就是最大的，那么遍历数组就从下标为1的元素开始
+        // var max = arr[0];
+        // var min = arr[0];
+        // for (var i = 1; i < arr.length; i++) {
+            //判断循环一次得到的结果和假设值的比较
+            /*
+            第一次：max = 5;i = 1;5<8?true:false true 进入下次循环 i++ 
+            
+            第二次：max = 8; i =2;8<15?true:falese true 进入下次循环 i++
+
+            第三次  max =15;i = 3;15<82?true:false true 进入下次循环 i++
+
+            第四次  max = 82;i=4;82<98?true:false true 进去下次循环 i++
+
+            第五次 max = 98; i= 5;98<52?true:false false 跳出循环，输出max = 98;                    
+            
+            */
+        //     if (max < arr[i]) {
+        //         max = arr[i]
+        //     } else if (min < min[i]) {//判断最小值，思路和上面一样
+        //         min = min[i]
+        //     }
+        //     // document.write(i)
+        // }
+        // console.log(max)
+        // console.log(min)
+
+        //封装函数求最小最大值
+        function zhi() {
+            var max = arr[0];
+            var min = arr[0];
+            for (var i = 1; i < arr.length; i++) {
+                //判断循环一次得到的结果和假设值的比较
+                /*
+                第一次：max = 5;i = 1;5<8?true:false true 进入下次循环 i++ 
+                
+                第二次：max = 8; i =2;8<15?true:falese true 进入下次循环 i++
+
+                第三次  max =15;i = 3;15<82?true:false true 进入下次循环 i++
+
+                第四次  max = 82;i=4;82<98?true:false true 进去下次循环 i++
+
+                第五次 max = 98; i= 5;98<52?true:false false 跳出循环，输出max = 98;                    
+                
+                */
+                if (max < arr[i]) {
+                    max = arr[i]
+                } else if (min < min[i]) {//判断最小值，思路和上面一样
+                    min = min[i]
+                }
+                // document.write(i)
+            }
+            //创建新的数组保存结果，也就是函数的返回值
+            var arr1 = [min,max];
+            //返回值
+            return arr1;
+        }
+        //调用函数
+        var res = zhi([5, 8, 15, 82, 98, 52, 100]);
+        console.log('最小值是' + res[0] + ',最大值是' + res[1]);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+       
+        
+        function suiji(n){
+            var arr = [1,2,3];
+        for(var i = 0 ;i < n ; i++){
+            //调用函数产生随机数，并把随机数保存到数组arr中
+            // arr[i] = rand(1,100);
+            //数组的长度会跟着产生随机数的个数而改变
+            arr[arr.length] = rand(0,100);
+        }
+        return arr
+        }
+        // console.log(arr)
+        console.log(suiji(100))
+
+
+         //产生随机数的函数
+         function rand(min,max){
+            //直接返回随机数
+            return parseInt(Math.random()*(max - min)+ min);
+        }
+
+        // var arr = [1,2,3] ;
+        // for(var i = 0 ; i < 1000 ; i++) {
+        //     arr[i] = rand(0,100) ;
+        //     // arr[arr.length] = rand(0,100) ;    // length会随着数组的赋值发生改变
+        // }
+        // console.log(arr);
+
+        // i = 0   length = 0   arr[0] = rand()
+        // i = 1   length = 1   arr[1] = rand()
+
+
+        // function randArr(n) {
+        //     var arr = [1,2,3] ;
+        //     for(var i = 0 ; i < n ; i++) {
+        //         arr[arr.length] = rand(0,100) ;    // length会随着数组的赋值发生改变
+        //     }
+        //     // console.log(arr);
+        //     return arr
+        // }
+
+        // console.log(randArr(100));
+
+
+
+
+        // function rand(min , max) {
+        //     return parseInt(Math.random() * (max - min) + min) ;
+        // }
+    </script>
+    
+</body>
+</html>

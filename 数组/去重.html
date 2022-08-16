@@ -9,9 +9,21 @@
 <body>
     <script>
         var arr = [1,2,3,4,5,6,7];
-        console.log(arr);
-
-
+        // console.log(arr);
+        // console.log(Array.isArray(arr))
+        // console.log(arr instanceof Array)
+        // for(var i = 0;i<arr.length;i++){
+        //     console.log(arr[i]);
+        // }
+        // for (var i in arr){
+        //     console.log(arr[i])
+        // }
+        for(var v of arr) {
+            if(v === 3) {
+                break ;
+            }
+            console.log(v);
+        }
     </script>
 </body>
 </html>
