@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+            首先我们不知道需要传多少参数，所以这里需要用arguments
+            因为concat拼接数组的时候不仅可以拼接元素，也可以拼接一个数组
+        
+        */
+        function myConcat() {
+            //原数组
+            var arr = arguments[0];
+            //创建新的数组，保存遍历的值
+            var newArr = [];
+            //遍历原数组里面的值，放到新数组
+            for (var i in arr) {
+                //通过push方法放到新数组
+                newArr.push(arr[i]);
+            }
+            //遍历新数组的值 
+            for (var i = 1; i < arguments.length; i++) {
+                //创建新的变量保存数组的元素
+                var a = arguments[i];
+                //再判断是不是数组，instanceof
+                if (a instanceof Array) {
+                    //如果是数组，直接把元素放进去，先遍历
+                    for (var j in a) {
+                        newArr.push(a[j]);
+                    }
+                }else {
+                    newArr.push(a);
+                }
+            }
+            console.log(newArr)
+
+            // return newArr
+        }
+        myConcat([1,2,3], 'a', 3);
+
+
+
+
+        // function myConcat(arr , v1 , v2  ,v3) {
+        //     var arr = arguments[0] ;   //拿到原数组
+        //     var newArr = [] ;
+        //     // 把原数组中的所有值放入新的数组
+        //     for(var i in arr) {
+        //         newArr.push(arr[i]) ;
+        //     }
+
+        //     // 遍历需要拼接到新数组中的值
+        //     for(var i = 1 ; i < arguments.length ; i++) {
+        //         var v = arguments[i] ;
+        //         // 判断v是不是数组
+        //         if(v instanceof Array) {
+        //             // 遍历数组
+        //             for(var j in v) {
+        //                 newArr.push(v[j])
+        //             }
+        //         } else {
+        //             // 如果不是数组就直接丢进去
+        //             newArr.push(v) ;
+        //         }
+        //     }
+
+        //     console.log(newArr);
+        //     // return newArr
+        // }
+
+
+        // myConcat([1,2,3] , [8,9] , 'a' , 'b')
+
+
+    </script>
+</body>
+
+</html>
