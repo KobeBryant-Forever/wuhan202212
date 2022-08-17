@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // splice(i , howmany , v1 , v2 , v3 ...)   直接改变原数组的元素,返回被删除的数据(得到的是一个新数组)
+        //     删除数组中的值 (i,howmany)   第一个参数表示开始的位置，第二个参数表示要删除的个数
+        //     替换数组中的值 (i , howmany , v1 , v2)   第一个参数表示开始的位置，第二个参数表示要删除的个数 ， 第三个及后面的参数是要插入的值
+        //     新增值(i , 0 , v1 , v2)
+        //第一个2表示从下标为2的元素开始删除，第二个2表示删除2个元素
+        // arr.splice(7,2);
+        // 第一个2表示从下标为2的开始删除，后面一个1表示删除一个，后面的两个字符串表示补上被删掉的元素的位置
+        // arr.splice(2 , 1 , 'a' , 'b') ;
+        // var arr = [1,2,3,4,5,6,7,8,9];
+        // //
+        // //添加新的元素
+        // arr.splice(arr.length -1,'' , 'a' , 'b') ;
+        // console.log(arr);
+//         var arr = [0,1,2,3,4,5];
+// for(var v of arr) {
+//             if(v === 5) {
+//                 break ;
+//             }
+//             console.log(v);
+//         }
+var arr = [1,2,3,4,5];
+for (var i in arr){
+            console.log(arr[i])
+   }
+
+    </script>
+</body>
+</html>

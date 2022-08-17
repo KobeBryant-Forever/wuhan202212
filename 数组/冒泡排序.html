@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        var arr = [ 3,4,5,11,8,25,13,54,7,50];
+
+        //外层循环控制比较的次数,次数比数组长度少1
+        for(var  j = 0;j<arr.length-1;j++){
+            //内部循环，控制每次循环得到的最大值，通过中间变量进行保存
+            for(var i = 0;i<arr.length-1;i++){
+                //判断每次相邻元素比较的结果
+                if(arr[i] > arr[i+1]){
+                    //通过中间变量进行值交换
+                    var temp = arr[i];
+                    arr[i] = arr[i+1];
+                    arr[i+1]= temp;
+                }
+            }
+            
+        }
+        console.log(arr)
+    </script>
+</body>
+</html>

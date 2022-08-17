@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            假设第一个值是最小的，然后通过遍历下标去找
+        
+        */
+       var arr = [4,3,2,58,47,12,20,3,6,7];
+        for(var j = 0;j<arr.length-1;j++){
+            //假设第一个是最小的，下标开始
+            var min = j;
+            //内层循环去比较后面最小的，然后输出最小的下标
+            for(var i= j+1;i<arr.length;i++){
+                if(arr[min] > arr[i]){
+                    min = i;
+                }
+            }
+            //如果比前一个小，就进行值的交换，把最小的值换到前面
+            if(min !==j){
+                var temp = arr[min];
+                arr[min] = arr[j];
+                arr[j] =temp;
+            }
+        }
+console.log(arr);
+    </script>
+</body>
+</html>

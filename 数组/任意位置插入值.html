@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            插入值的位置可以是在数组的最前面也可以在两个元素之间，也可以在数组的最后面，位置
+        */
+    //    var arr = [1,2,3,4];
+        function charu(arr,n){
+            //假设法，假设在最前面插入
+            var a = 0;
+
+            //判断插入值和数组元素值的比较
+            if(n > arr[arr.length-1]){
+                //如果插入的值大于元素的最后一位的大小，那就在元素的最后面插入
+                a = arr.length;
+            }else{
+                //判断插入值和相邻元素的时候
+                for(var i = 0; i<arr.length;i++){
+                    if(n > arr[i] && n< arr[i+1]){
+                        a = i + 1;
+                    break;
+                }
+            }
+            
+        }
+        //插入值
+        arr.splice(a,0,n);
+        console.log(arr);
+    }
+        //调用插入函数
+        charu([1,2,3,4,6],5);
+    </script>
+</body>
+</html>
