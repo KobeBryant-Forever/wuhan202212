@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var str = 'hello day up';
+        //通过indexOf()访问字符串的元素值，如果存在就返回具体的值，不存在就返回-1
+        // console.log(str.indexOf('h'));
+
+        //通过includes()判断字符串中是否存在某个元素，如果不存在就返回false，存在就返回true
+        // console.log(str.includes('h'));
+
+        //拼接字符串concat()
+          
+        // console.log(str.concat(' world'));
+
+        //slice截取字符串中指定的值,第一个参数表示数量，第二个表示截取多少个
+        // console.log(str.substring(2,4));
+        // console.log(str.substr(2,4));//第一个表示开的位置，第二个表示数量
+
+        //转大小写 toUpperCase()转大写，toLowerCase()转小写
+
+        // console.log(str.toUpperCase());
+
+        // console.log(str.toLowerCase());
+
+        // 去掉首尾空格的方法trim()
+
+        // console.log(str);
+        // console.log(str.trim());
+        
+
+        //替换字符串里面的值,前面一个参数表示要替换的元素，后面一个表示替换成的值
+        // console.log(str.replace('h',1));
+
+        //把字符串切割成数组,若有空格存在，则需要把空格切掉，不然它会把空格也当成一个元素，就会一个一个的往后切
+
+        console.log(str.split(' '));
+    </script>
+</body>
+</html>
