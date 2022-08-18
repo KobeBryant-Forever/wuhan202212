@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul {
+            list-style: none;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="list">
+        <!-- <strong></strong> -->
+        <li>
+            <a href=""></a>
+            <span></span>
+        </li>
+    </ul>
+    <script>
+        //声明空字符，拼接标签
+        var res = '';
+        var data = [
+            ['新闻1', '2022 - 8 - 18'],
+            ['新闻2', '2022 - 8 - 18'],
+            ['新闻3', '2022 - 8 - 18'],
+            ['新闻4', '2022 - 8 - 18'],
+            ['新闻5', '2022 - 8 - 18'],
+        ]
+        //遍历数组
+        for (var i = 0; i < data.length; i++) {
+            res += '<li>';
+            res += '<strong>' + (i * 1 + 1) + '</strong>'
+            res += '<a href="">' + data[i][0] + '</a>'
+            res += '<span>' + data[i][1] + '</span>'
+            res += '</li>'
+            // res += '</li>'
+        }
+        var oUl = document.getElementById('list');
+        console.log(oUl);
+        oUl.innerHTML = res;
+    </script>
+</body>
+
+</html>

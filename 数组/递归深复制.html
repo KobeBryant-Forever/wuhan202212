@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+        //深复制
+        
+
+        function deepCopy(arr) {
+            //新数组
+            var newArr = []
+            //遍历原数组
+            for (var i = 0; i < arr.length; i++) {
+                //判断里面会不会含有数组类型的元素
+                if (Array.isArray(arr[i])) {
+                    //如果是数组，就调用函数进行深复制
+                    var arr1 = deepCopy(arr[i]);
+                    //是数组之后，就把它放进新数组
+                    newArr.push(arr1)
+                } else {
+                    //如果不是，就直接把原数组的元素push到新数组中去
+                    newArr.push(arr[i])
+                }
+            }
+            //循环结束，返回值
+            return newArr
+        }
+        var arr = [1, 2, 3, ['a', 'b']];
+        //调用函数
+        var res = deepCopy(arr);
+        console.log(res)
+        arr[3][2] = 'w'
+        console.log(arr)
+    </script>
+
+
+</body>
+
+</html>
