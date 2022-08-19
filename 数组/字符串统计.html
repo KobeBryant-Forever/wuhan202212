@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var ary = "asasDFGHadDfFFhjkMNJGBHGDsdfghjfghjkdfghjkl";
+        //空对象保存
+        obj = {};
+
+        var i = 0;
+        //遍历字符串
+        for (i = 0; i < ary.length; i++) {
+            key = ary[i];
+            if (obj[key]) {
+                //对象中有这个字母
+                obj[key]++;
+            }
+            else {
+                //对象中没有这个字母,把字母加到对象中
+
+                obj[key] = 1;
+
+            }
+
+        }
+        for (var key in obj) //遍历这个对象
+        {
+            console.log(key + "这个字母出现了" + obj[key] + "次");
+
+        }
+
+    </script>
+</body>
+
+</html>
