@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 id="showTime"></h1>
+    <script>
+        var oshowTime = get('showTime')
+        setInterval(function () {
+            fromCode()
+
+        }, 1000)
+
+
+        function fromCode() {
+            var t1 = new Date('2022-10-1');
+            var t2 = new Date();
+            //时间单位转换
+            var gap = parseInt((t1 - t2) / 1000);
+            //取出小时
+            var h = parseInt(gap / 3600);
+            //取出分
+            var m = parseInt(gap % 3600 / 30);
+            //取出秒
+            var s = gap % 60;
+            showTime.innerHTML = ('距离十一还有' + (h < 10 ? '0' + h : h) + '小时' + (m < 10 ? '0' + m : m) + '分' + (s < 10 ? '0' + s : s) + '秒')
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        function get(id) {
+            return document.getElementById(id);
+        }
+    </script>
+</body>
+
+</html>

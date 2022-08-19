@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input {
+            width: 20%;
+        }
+    </style>
+</head>
+
+<body>
+    <p>用户名：只能由数字和字母组成且数字不能开头，长度4-10位</p>
+    <input type="text" placeholder="请输入用户名" id="username">
+    <span id="user_span"></span>
+    <br>
+    <p>密码：只能由数字和字母组成，长度4-10位</p>
+    <input type="password" placeholder="请输入用户名">
+    <br>
+    <p>确认密码</p>
+    <input type="text" placeholder="请输入用户名">
+    <br>
+    <p>验证码</p>
+    <input type="text" placeholder="验证码">
+    <span id="showCode">1234</span>
+    <button>刷新</button>
+
+    <p>
+        <button id="btn">注册</button>
+    </p>
+    <script>
+        //数字，大小写字母生成
+
+        //先生成小写
+        var smallArr = [];
+        for (var i = 97; i <= 122; i++) {
+            //通过ASCII值获取小写字母
+            var small = String.fromCharCode(i);
+            smallArr.push(small);
+        }
+        console.log(smallArr);
+
+        //生成大写字母
+        var daxie = [];
+        for (var i = 65; i <= 90; i++) {
+            var big = String.fromCharCode(i);
+            daxie.push(big)
+        }
+        console.log(daxie);
+
+        //生成数字
+
+        var num = [];
+        for (var i = 48; i <= 57; i++) {
+            var shuzi = String.fromCharCode(i);
+            num.push(shuzi);
+        }
+        console.log(num);
+
+        //拼接,把大小写，数字放在一个数组里面
+        var all = smallArr.concat(daxie, num);
+        console.log(all);
+
+
+
+        //获取页面元素
+
+        var oBtn = get('btn');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        function get(id) {
+            return document.getElementById(id);
+        }
+    </script>
+</body>
+
+</html>
