@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        margin: auto;
+        text-align: center;
+    }
+
+    button {
+        background-color: red;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        font-size: 40px;
+        color: white;
+        text-align: center;
+    }
+</style>
+
+<body>
+    <button id="btn">10</button>
+    <script>
+
+        //获取页面元素，通过get函数
+        var oBtn = get('btn');
+        //假设已经点过
+        var flag = true;
+        oBtn.onclick = function () {
+            //判断验证
+            if (flag) {
+                //点过之后就不能点了
+                flag = false
+                var t = setInterval(function () {
+                    oBtn.innerHTML--;
+                    if (oBtn.innerHTML == 0) {
+                        //清除定时器
+                        clearInterval(t);
+                        flag = true;
+                        oBtn.innerHTML = 10;
+                    }
+                }, 500)
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+        function get(id) {
+            return document.getElementById(id);
+        }
+    </script>
+</body>
+
+</html>
