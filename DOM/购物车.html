@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/mi.css">
+
+</head>
+
+<body>
+    <div class="cart">
+        <div class="cart-hd">
+            <span>
+                <input type="checkbox" class="check">
+                全选
+            </span>
+            <span>图片</span>
+            <span>商品名称</span>
+            <span>单价</span>
+            <span>数量</span>
+            <span>小计</span>
+            <span>操作</span>
+        </div>
+        <ul class="cart-bd">
+            <!-- <li>
+                <span>
+                    <input type="checkbox">
+                </span>
+                <span>
+                    <img src="" alt="">
+                </span>
+                <span>商品名称</span>
+                <span>单价</span>
+                <span>
+                    <span class="reduce">-</span>
+                    <input type="text" class="num" value="">
+                    <span class="add">+</span>
+                </span>
+                <span>小计</span>
+                <span>删除</span>
+            </li> -->
+        </ul>
+        <p>批量删除:</p>
+        <p>数量总计:<span class="total"></span></p>
+        <p>总价合计:<span class="money"></span></p>
+    </div>
+    <script>
+
+
+        //数据
+        var data = {
+            list: [
+                {
+                    good_Name: 'Xiaomi MIX Fold 2',
+                    good_Img: 'https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/52ef2b0a20fdb016f11d717e63f460db.png',
+                    good_Num: 1,
+                    good_Price: 8999,
+                },
+                {
+                    good_Name: 'Xiaomi 12S Pro',
+                    good_Img: 'https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c8eb4a86e68e5fc1ddeb4bf6a6f3d042.png',
+                    good_Num: 1,
+                    good_Price: 4699,
+                },
+                {
+                    good_Name: 'Xiaomi 12 Pro',
+                    good_Img: 'https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/6c0553468a73cc445012577d8993dfc9.png',
+                    good_Num: 1,
+                    good_Price: 4699,
+                },
+                {
+                    good_Name: 'Redmi Note 11 4G',
+                    good_Img: 'https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/e2c570b7cd666114a7d351a1dd10a527.png',
+                    good_Num: 1,
+                    good_Price: 939,
+                },
+            ]
+        };
+
+        //动态生成数据
+
+        //搞一个空串拼接，通过forEach方法
+        var html = ''
+        data.list.forEach(function (v, i) {
+            html += `
+             <li>
+                <span>
+                    <input type="checkbox" class="one">
+                </span>
+                <span>
+                    <img src="${v.good_Img}" alt="">
+                </span>
+                <span>${v.good_Name}</span>
+                <span>${v.good_Price}</span>
+                <span>
+                    <span class="reduce ${v.good_Num == 1 ? 'off' : ''}">-</span>
+                    <input type="text" class="num" value="${v.good_Num}">
+                    <span class="add">+</span>
+                </span>
+                <span>${v.good_Num * v.good_Price}</span>
+                <span class ="del">删除</span>
+            </li>
+            `
+        })
+        var Ol = document.querySelector('ul');
+        Ol.innerHTML = html;
+
+        var oAdd = document.querySelectorAll('.add');
+        var oReduces = document.querySelectorAll('.reduce');
+
+
+        //数量加的操作
+        //先清除所有
+        for (var i = 0; i < oAdd.length; i++) {
+            //给加号绑定点击事件
+            oAdd[i].onclick = function () {
+                //加号的前一个，也就是那个框
+                this.previousElementSibling.value++;
+                //当加到一定数量之后，需要减下来，因为我们买不起那么多
+                this.previousElementSibling.previousElementSibling.classList.remove('off')
+
+
+                //价钱小计也跟着变
+                this.parentElement.nextElementSibling.innerHTML = this.previousElementSibling.value * this.parentElement.previousElementSibling.innerHTML;
+
+                total();
+            }
+        }
+
+
+        //数量减
+        for (var i = 0; i < oReduces.length; i++) {
+            //给减号绑定点击事件
+            oReduces[i].onclick = function () {
+                //判断到一的时候就不能再减了
+                if (this.classList.contains('off')) {
+                    return;
+                }
+                //那个框在减号的下面，所以用next
+                this.nextElementSibling.value--;
+                //价钱的合计也跟着改变
+                this.parentElement.nextElementSibling.innerHTML = this.nextElementSibling.value * this.parentElement.previousElementSibling.innerHTML;
+                if (this.nextElementSibling.value == 1) {
+                    this.classList.add('off');
+                }
+            }
+        }
+
+        //点击后面删除删除对应的货物
+
+        var Del = document.querySelectorAll('.del');
+        for (var i = 0; i < Del.length; i++) {
+            //绑定点击事件
+            Del[i].onclick = function () {
+                //通过remove移除删除的爹，就是上一个
+                this.parentElement.remove();
+            }
+        }
+
+
+        //通过复选框进行全选和反选
+        var Quan = document.querySelectorAll('.one');
+
+        for (var i = 0; i < Quan.length; i++) {
+            //给最上面的复选框绑定点击事件
+            Quan[i].onclick = function () {
+                total()
+            }
+        }
+
+
+        var abc = document.querySelector('.total');
+        //数量小计
+
+        function total() {
+            var sum = 0;
+            for (var i = 0; i < Quan.length; i++) {
+                //判断是否选中
+                if (Quan[i].checked) {
+                    sum += Quan[i].parentElement.parentElement.querySelector('.num').value * 1;
+                }
+                abc.innerHTML = sum;
+                console.log(66);
+            }
+        }
+    </script>
+</body>
+
+</html>

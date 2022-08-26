@@ -1,0 +1,70 @@
+* {
+    padding: 0;
+    margin: 0;
+    list-style: 0;
+
+
+}
+
+body {
+    background-color: #eee;
+}
+
+.cart {
+    width: 1000px;
+    margin: 30px auto;
+    background-color: #fff;
+    line-height: 50px;
+    text-align: center;
+}
+
+.cart-hd {
+    border-bottom: 1px solid #000;
+}
+
+.cart-hd {
+    display: flex;
+}
+
+.cart-hd>span {
+    flex: 1;
+}
+
+
+
+.cart-bd li {
+    display: flex;
+    border-bottom: 1px solid #ddd;
+}
+
+.cart-bd li>span {
+    /* flex：1；就是用flex-basis把父元素width干掉，
+    然后再用flex-grow和flex-shrink进行增大的增大缩小的缩小，
+    达成最终的效果。避免塌了 */
+    flex: 1;
+}
+
+.num {
+    width: 50px;
+    vertical-align: middle;
+}
+
+
+
+.reduce,
+.add {
+    background-color: #f00;
+    width: 20px;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 20px;
+}
+
+.off {
+    background-color: #eee;
+}
+
+.cart img {
+    width: 40px;
+    vertical-align: middle;
+}

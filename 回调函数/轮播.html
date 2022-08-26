@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+            list-style: none;
+        }
+
+
+
+        #banner {
+            width: 800px;
+            height: 400px;
+            border: 2px solid #999;
+            overflow: hidden;
+            position: relative;
+            text-align: center;
+        }
+
+        #imgList {
+            width: 4000px;
+            height: 400px;
+        }
+
+        #imgList img {
+            width: 800px;
+            height: 400px;
+
+        }
+
+        #imgList li {
+            float: left;
+        }
+
+        #prev {
+            background-color: #666;
+            width: 30px;
+            height: 40px;
+            color: #fff;
+            text-align: center;
+            line-height: 40px;
+            position: absolute;
+            left: 5px;
+            top: 45%;
+            cursor: pointer;
+        }
+
+        #next {
+            background-color: #666;
+            width: 30px;
+            height: 40px;
+            color: #fff;
+            text-align: center;
+            line-height: 40px;
+            position: absolute;
+            right: 5px;
+            top: 45%;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="banner">
+        <ul id="imgList">
+            <li><img src="../img/iTab-4v26m3.jpg" alt=""></li>
+            <li><img src="../img/iTab-62e60e1c29fdbff718b6336b.jpg" alt=""></li>
+            <li><img src="../img/iTab-62e60e1c29fdbff718b6336b (1).jpg" alt=""></li>
+            <li><img src="../img/iTab-62e60e1c29fdbff718b6336b (2).jpg" alt=""></li>
+            <li><img src="../img/iTab-4v26m3.jpg" alt=""></li>
+        </ul>
+        <div id="prev">《</div>
+        <div id="next">》</div>
+    </div>
+    <script>
+
+        //获取页面元素
+        var eprev = get('prev')
+        var enext = get('next');
+        var left = 0;
+        //全局变量，用于清除定时器
+        var timer;
+        //调用函数
+        run()
+        function run() {
+            //判断如果超出了最大宽度回到第一张
+            if (left <= -3200) {
+                left = 0;
+            }
+            clearInterval(timer);
+
+            imgList.style.marginLeft = left + 'px';
+            /*
+            根据移动距离判断setTimeout执行的时间  每次left能够对800取余为0 
+             就把setTimeout执行时间改为1200  如果不为0则执行时间为10
+            */
+            var n = (left % 800 == 0) ? n = 1200 : n = 10;
+            left -= 10;
+            ////计时器
+            timer = setTimeout(run, n);
+        }
+
+        //创建函数来定位图片的位置
+        function imgChange(n) {
+            var It = -(n * 800);
+            //完成定位图片之后
+            imgList.style.marginLeft = It + 'px';
+            //修改移动的距离，也就是left
+            left = It;
+        }
+
+
+        //绑定点击事件
+        eprev.onclick = function () {
+            //console.log(666);绑定成功
+            //定位第一张试试,调用imgChange函数
+            // imgChange(0)
+            //清除定时器
+
+            //通过获取当前图片的位置减去一就是上一张
+            var prevgo = Math.floor(-left / 800) - 1;
+            //如果定位到当前位置为第一张的，那就跳到最后一张，不能减一
+            if (prevgo == -1) {
+                prevgo = 3;
+            }
+            imgChange(prevgo);
+        }
+        enext.onclick = function () {
+            //console.log(7777);绑定成功
+            //也定位最后一张试试
+            // imgChange(3);
+            // clearInterval(timer);
+
+            //通过获取当前图片的位置加一就是下一张
+            var nextgo = Math.floor(-left / 800) + 1;
+            //判断如果定位在最后一张上面，直接跳到第一张额位置
+            if (nextgo == 4) {
+                nextgo = 0;
+            }
+            imgChange(nextgo);
+        }
+
+
+        //创建获取页面元素的函数，直接调用get就行
+        function get(id) {
+            return document.getElementById(id);
+        }
+    </script>
+</body>
+
+</html>

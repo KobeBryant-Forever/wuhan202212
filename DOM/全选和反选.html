@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="checkbox" class="checkAll">
+    <br>
+    <input type="checkbox" class="checkOne">
+    <input type="checkbox" class="checkOne">
+    <input type="checkbox" class="checkOne">
+    <input type="checkbox" class="checkOne">
+
+
+    <script>
+
+        var All = document.querySelectorAll('.checkAll');
+        var oOne = document.querySelectorAll('.checkOne');
+
+        //绑定点击事件
+
+        All[0].onclick = function () {
+            var v = this.checked;
+            // console.log(6666);
+            if (v) {
+                for (var i = 0; i < oOne.length; i++) {
+                    oOne[i].checked = true;
+                }
+            } else {
+                for (var i = 0; i < oOne.length; i++) {
+                    oOne[i].checked = false;
+                }
+            }
+            // console.log(v);
+            // for (var i = 0; i < oOne.length; i++) {
+            //     oOne[i].checked = All.checked;
+            // }
+        }
+
+
+        // 反向判断全选
+
+        // 给所有的单选绑定事件
+        // for (var i = 0; i < oOne.length; i++) {
+        //     oOne[i].onclick = function () {
+        //         // 判断所有的单选是否都被选中
+        //         if (oOne[0].checked && oOne[1].checked && oOne[2].checked && oOne[3].checked) {
+        //             oAll.checked = true;
+        //         }
+        //         else {
+        //             oAll.checked = false;
+        //         }
+        //     }
+        // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

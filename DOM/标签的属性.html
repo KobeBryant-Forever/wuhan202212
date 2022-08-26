@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="a" id="b" data="123"></div>
+    <script>
+        //标签的自带属性 id className
+
+        var Div = document.querySelector('div');
+        console.log(Div.id);
+
+        //获取标签的class属性名  class属性是保留字 className
+        console.log(Div.className);
+
+
+
+        //给标签自定义属性，data
+        //获取标签的自定义属性，通过getAttribute()
+        var v = Div.getAttribute('data');
+
+        console.log(v);
+        //通过setAttribute()方法给标签自定义属性,在标签里面看不见
+        Div.index = 2;
+        console.log(Div);
+
+    </script>
+</body>
+
+</html>

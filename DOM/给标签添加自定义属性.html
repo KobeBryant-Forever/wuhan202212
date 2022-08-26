@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>我是第一个</p>
+    <p>我是第二个</p>
+    <p>我是第三个</p>
+    <script>
+        var P = document.querySelectorAll('p');
+        //由于存在异步，无法知道下标，所以先拿出每个值，因为标签也是对象，所以可以先遍历
+        for (var i = 0; i < P.length; i++) {
+            //给拿出来的进行自定义属性
+            P[i].cd = i;
+            //事件监听
+            P[i].addEventListener('click', function () {
+                //通过this事件解决使用打印最后一个的bug
+                console.log(this.cd);
+                console.log(this);
+
+            })
+        }
+    </script>
+</body>
+
+</html>

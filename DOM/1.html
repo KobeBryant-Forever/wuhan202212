@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        body {
+            background-color: #eee;
+        }
+
+        .cart {
+            width: 1000px;
+            margin: 30px auto;
+            background-color: #fff;
+            line-height: 50px;
+            text-align: center;
+        }
+
+        .cart-hd {
+            border-bottom: 1px solid #000;
+        }
+
+        .cart-hd {
+            display: flex;
+        }
+
+        .cart-hd>span {
+            flex: 1;
+        }
+
+        .cart-bd li {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .cart-bd li>span {
+            flex: 1;
+        }
+
+        .num {
+            width: 50px;
+            vertical-align: middle;
+        }
+
+        .reduce,
+        .add {
+            background-color: #f00;
+            width: 20px;
+            display: inline-block;
+            vertical-align: middle;
+            line-height: 20px;
+        }
+
+        .off {
+            background-color: #eee;
+        }
+
+        .cart-bd img {
+            width: 40px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cart">
+        <div class="cart-hd">
+            <span>
+                <input type="checkbox">
+                全选
+            </span>
+            <span>图片</span>
+            <span>商品名称</span>
+            <span>单价</span>
+            <span>数量</span>
+            <span>小计</span>
+            <span>操作</span>
+        </div>
+
+        <ul class="cart-bd">
+            <!-- <li>
+                <span>
+                    <input type="checkbox">
+                </span>
+                <span>
+                    <img src="https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202205240049_b5a667f5e7ec7e57154a100001a0bcac.png?thumb=1&w=90&h=90&f=webp&q=90"
+                        alt="">
+                </span>
+                <span>商品名称</span>
+                <span>单价</span>
+                <span>
+                    <span class="reduce">-</span>
+                    <input class="num" type="text" value="">
+                    <span class="add">+</span>
+                </span>
+                <span>小计</span>
+                <span>X</span>
+            </li> -->
+        </ul>
+        <p>批量删除</p>
+        <p>数量总计：<span class="total"></span></p>
+        <p>合计：<span class="money"></span></p>
+    </div>
+
+    <script>
+
+
+        // 渲染页面的时候
+        //    小计  数量 * 单价   ${表达式}
+        //    数量为1的时候，不能再减了 需要加一个类名 off  ${num==1?'off':''}
+
+
+
+
+        var data = {
+            msg: '数据请求成功',
+            code: 0,
+            list: [
+                {
+                    goods_name: 'Redmi 手表 2 深空蓝',
+                    goods_img: 'https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202204211508_976de563d2d261ea20583e0a26bd052a.png?thumb=1&w=90&h=90&f=webp&q=90',
+                    goods_num: 2,
+                    goods_price: 379
+                },
+                {
+                    goods_name: 'Redmi K50 至尊版 8GB+128GB 雅黑',
+                    goods_img: 'https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202208101508_df890f7fafc29921ded695b2af591190.png?thumb=1&w=90&h=90&f=webp&q=90',
+                    goods_num: 1,
+                    goods_price: 2799
+                },
+                {
+                    goods_name: '小米手环7 腕带 活力橙',
+                    goods_img: 'https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202205240049_b5a667f5e7ec7e57154a100001a0bcac.png?thumb=1&w=90&h=90&f=webp&q=90',
+                    goods_num: 1,
+                    goods_price: 19.9
+                },
+                {
+                    goods_name: '小米巨能写中性笔10支装 黑色 10支装',
+                    goods_img: 'https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1559616366.16874615.jpg?thumb=1&w=90&h=90',
+                    goods_num: 3,
+                    goods_price: 9.99
+                }
+            ]
+        };
+
+
+
+        var html = '';
+        data.list.forEach(function (v, i) {
+            html += `
+                <li>
+                    <span>
+                        <input type="checkbox" class="one">
+                    </span>
+                    <span>
+                        <img src="${v.goods_img}"
+                            alt="">
+                    </span>
+                    <span>${v.goods_name}</span>
+                    <span>${v.goods_price}</span>
+                    <span>
+                        <span class="reduce ${v.goods_num == 1 ? 'off' : ''}">-</span>
+                        <input class="num" type="text" value="${v.goods_num}">
+                        <span class="add">+</span>
+                    </span>
+                    <span>${v.goods_num * v.goods_price}</span>
+                    <span class="del">X</span>
+                </li>
+            `
+        })
+
+        var oUl = document.querySelector('ul');
+        oUl.innerHTML = html;
+
+
+
+
+
+        var oAdds = document.querySelectorAll('.add');
+        var oReduces = document.querySelectorAll('.reduce');
+
+
+        // 数量加
+        for (var i = 0; i < oAdds.length; i++) {
+            oAdds[i].onmousover = function () {
+                this.previousElementSibling.value++;
+                // 数量加了以后  肯定大于1   也就是说可以减了  需要把减号上面的off去掉
+                this.previousElementSibling.previousElementSibling.classList.remove('off');
+
+                // 小计跟着改变
+                this.parentElement.nextElementSibling.innerHTML = this.previousElementSibling.value * this.parentElement.previousElementSibling.innerHTML;
+
+                // 小计
+                total()
+
+            }
+        }
+
+
+        // 数量减
+        for (var i = 0; i < oReduces.length; i++) {
+            oReduces[i].onclick = function () {
+                // 判断能不能减
+                //    1 判断数量
+                //    2 也可以判断类名off
+                if (this.classList.contains('off')) {
+                    return;
+                }
+                this.nextElementSibling.value--;
+                // 小计跟着改变
+                this.parentElement.nextElementSibling.innerHTML = this.nextElementSibling.value * this.parentElement.previousElementSibling.innerHTML;
+                if (this.nextElementSibling.value == 1) {
+                    this.classList.add('off');
+                }
+            }
+        }
+
+
+        // 单独删除
+        var oDels = document.querySelectorAll('.del');
+        for (var i = 0; i < oDels.length; i++) {
+            oDels[i].onclick = function () {
+                this.parentElement.remove();
+            }
+        }
+
+
+
+
+
+
+        // 全选和反选
+        var oOnes = document.querySelectorAll('.one');
+        // ....
+
+        for (var i = 0; i < oOnes.length; i++) {
+            oOnes[i].onclick = function () {
+                total()
+            }
+        }
+
+
+        var oTotal = document.querySelector('.total');
+
+
+        // 数量小计
+        function total() {
+            var sum = 0;
+            for (var i = 0; i < oOnes.length; i++) {
+                // 判断是否选中
+                if (oOnes[i].checked) {
+                    sum += oOnes[i].parentElement.parentElement.querySelector('.num').value * 1;
+                }
+            }
+            oTotal.innerHTML = sum;
+            console.log(sum);
+        }
+    </script>
+
+
+</body>
+
+</html>

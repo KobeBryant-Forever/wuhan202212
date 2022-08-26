@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="" method="get">
+
+        <input type="text" name="username">
+        <input type="password" name="pwd">
+        <button type="submit">提交</button>
+    </form>
+    <script>
+
+        var str = 'file:///E:/wuhan202212/BOM/%E5%9C%B0%E5%9D%80%E6%A0%8F%E5%88%87%E5%89%B2.html?username=wjd&pwd=1323'
+        //字符串转为数组
+        var arr = str.split('?');
+        console.log(arr);
+
+        //二次切割
+        var arr1 = arr[1];
+        var arr2 = arr1.split('&')
+        console.log(arr2);
+
+
+        //空数组，保存新数组
+        // var arr3 = [];
+        // for (var i in arr2) {
+        //     //等号切割
+        //     var a = arr2[i].split('=');
+        //     //切割出来的放到新数组
+        //     arr3.push(a)
+        // }
+        // console.log(arr3);
+
+        var arr3 = arr2.map(function (v, i) {
+            return v.split('=')
+        })
+        console.log(arr3);
+    </script>
+
+</body>
+
+</html>

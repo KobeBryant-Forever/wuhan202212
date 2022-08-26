@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        /*
+        window对象常见属性
+         navigator 浏览器的相关属性
+            appVersion /userAgent(用户代理) 显示浏览器的具体信息
+
+
+
+        */
+        console.log(window.navigator);
+
+        console.log(window.navigator.appVersion);//输出值是字符串
+        console.log(window.navigator.userAgent);//字符串
+
+        if (navigator.appVersion.includes('iPhone')) {
+            console.log('我用的是apple');
+        }
+    </script>
+</body>
+
+</html>

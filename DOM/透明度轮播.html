@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/banner.css">
+</head>
+
+<body>
+    <div class="banner">
+        <ul id="list">
+            <!-- <li><img src="../img/iTab-4v26m3.jpg" alt=""></li>
+        <li><img src="../img/iTab-62e60e1c29fdbff718b6336b (1).jpg" alt=""></li>
+        <li><img src="../img/iTab-62e60e1c29fdbff718b6336b (2).jpg" alt=""></li>
+        <li><img src="../img/iTab-62e60e1c29fdbff718b6336b.jpg" alt=""></li> -->
+        </ul>
+        <ol>
+            <!-- <li style="background-color:red;"></li>
+        <li></li>
+        <li></li>
+        <li></li> -->
+        </ol>
+        <span id="prev">&lt;</span>
+        <span id="next">&gt;</span>
+        <script>
+
+            var index = 0;
+            var t;
+            var Ul = document.getElementById('list');
+            var Ol = document.querySelector('ol')
+            var Prev = document.getElementById('prev');
+            var Next = document.getElementById('next');
+            var Banner = document.querySelector('.banner');
+
+            var arr = [1, 2, 3, 4];
+            //动态生成li
+            var imgHTML = '';
+            var dotHTML = '';
+            arr.forEach(function (v, i) {
+                imgHTML += `
+                <li>
+                    ${v}
+                </li>
+            ` ;
+                // 小点
+                dotHTML += `
+                <li></li>
+            `
+            })
+            Ol.innerHTML = dotHTML;
+            Ul.innerHTML = imgHTML;
+
+            var oLis = document.querySelectorAll('ol li');
+            var oImgs = document.querySelectorAll('ul li');
+            var oLis = document.querySelectorAll('ol li');
+            var oImgs = document.querySelectorAll('ul li');
+
+            // 默认给第一张图片显示
+            oImgs[0].classList.add('show');
+
+            // 默认给第一个小点加红色
+            oLis[0].classList.add('active');
+
+
+            autoPlay();
+
+
+
+
+            function autoPlay() {
+                t = setInterval(function () {
+                    index++;
+                    if (index === oImgs.length) {
+                        index = 0;
+                    }
+                    show();
+                }, 1000)
+            }
+
+
+
+
+            function show() {
+                // 清除所有的图片
+                for (var i = 0; i < oImgs.length; i++) {
+                    oImgs[i].classList.remove('show');
+                    oLis[i].classList.remove('active');
+                }
+                oImgs[index].classList.add('show');
+                oLis[index].classList.add('active');
+            }
+
+        </script>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            width: 1200px;
+        }
+
+        ul li {
+            width: 280px;
+            margin: 10px;
+            border: 1px solid #000;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        ul img {
+            width: 100%;
+        }
+
+        #wo {
+            display: flex;
+            flex-wrap: wrap;
+            width: 1200px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="search">
+        <input type="text" name="" id="kw">
+        <button id="search">搜索</button>
+    </div>
+
+    <p>
+        <button id="type">蛋糕</button>
+        <button id="you">油</button>
+    </p>
+
+    <ul id="list">
+        <!-- <li>
+            <img src="https://img30.360buyimg.com/pop/s1180x940_jfs/t1/201288/25/23710/64955/62f070fdE95cb4f47/22b916d938a43bb5.jpg.avif" alt="">
+            <h3>金龙鱼</h3>
+            <p>金龙鱼调和油1:1:1</p>
+            <strong>9.9</strong>
+        </li> -->
+
+
+    </ul>
+    <script>
+
+        // 数组：存储多个同类型的数据
+        // 对象：对一类事物的描述  可以存储不同类型的数据
+
+        var arr = [
+            {
+                imgSrc: 'https://img30.360buyimg.com/pop/s1180x940_jfs/t1/201288/25/23710/64955/62f070fdE95cb4f47/22b916d938a43bb5.jpg.avif',
+                name: '金龙鱼',
+                des: '金龙鱼调和油1:1:1',
+                price: 9.9,
+                type: '油'
+            },
+            {
+                imgSrc: 'https://img30.360buyimg.com/pop/s1180x940_jfs/t1/201288/25/23710/64955/62f070fdE95cb4f47/22b916d938a43bb5.jpg.avif',
+                name: '菜籽',
+                des: '菜籽调和油1:1:1',
+                price: 9.9,
+                type: '油'
+            },
+            {
+                imgSrc: 'https://img30.360buyimg.com/pop/s1180x940_jfs/t1/201288/25/23710/64955/62f070fdE95cb4f47/22b916d938a43bb5.jpg.avif',
+                name: '金龙鱼2',
+                des: '金龙鱼2调和油1:1:1',
+                price: 19.9,
+                type: '油'
+            },
+            {
+                imgSrc: 'https://img30.360buyimg.com/pop/s1180x940_jfs/t1/201288/25/23710/64955/62f070fdE95cb4f47/22b916d938a43bb5.jpg.avif',
+                name: '金龙鱼3',
+                des: '金龙鱼3调和油1:1:1',
+                price: 29.9,
+                type: '油'
+            },
+
+            {
+                imgSrc: 'https://img30.360buyimg.com/pop/s1180x940_jfs/t1/201288/25/23710/64955/62f070fdE95cb4f47/22b916d938a43bb5.jpg.avif',
+                name: '菜籽2',
+                des: '菜籽2调和油1:1:1',
+                price: 19.9,
+                type: '油'
+            },
+            {
+                imgSrc: 'https://img30.360buyimg.com/pop/s1180x940_jfs/t1/201288/25/23710/64955/62f070fdE95cb4f47/22b916d938a43bb5.jpg.avif',
+                name: '菜籽3',
+                des: '菜籽3调和油1:1:1',
+                price: 29.9,
+                type: '油'
+            },
+            {
+                imgSrc: 'https://img30.360buyimg.com/pop/s1180x940_jfs/t1/201288/25/23710/64955/62f070fdE95cb4f47/22b916d938a43bb5.jpg.avif',
+                name: '抹茶蛋糕',
+                des: '抹茶蛋糕1:1:1',
+                price: 29.9,
+                type: '蛋糕'
+            },
+
+            {
+                imgSrc: 'https://img30.360buyimg.com/pop/s1180x940_jfs/t1/201288/25/23710/64955/62f070fdE95cb4f47/22b916d938a43bb5.jpg.avif',
+                name: '黑森林2',
+                des: '黑森林21:1:1',
+                price: 19.9,
+                type: '蛋糕'
+            },
+            {
+                imgSrc: 'https://img30.360buyimg.com/pop/s1180x940_jfs/t1/201288/25/23710/64955/62f070fdE95cb4f47/22b916d938a43bb5.jpg.avif',
+                name: '半熟芝士3',
+                des: '半熟芝士蛋糕31:1:1',
+                price: 29.9,
+                type: '蛋糕'
+            }
+        ];
+
+
+        var html = '';
+        arr.forEach(function (v, i) {
+            html += `
+            <li>
+                
+                <h3>${v.name}</h3>
+                <p>${v.des}</p>
+                <strong>${v.price}</strong>
+            </li>
+            `
+        })
+
+        var oUl = document.getElementById('list');
+        oUl.innerHTML = html;
+
+
+
+
+        // 搜索
+        var oSearch = document.getElementById('search');
+        var oKw = document.getElementById('kw');
+
+        oSearch.onclick = function () {
+
+            // 获取搜索框的值
+            var kw = oKw.value;
+            if (kw === '') {
+                return
+            }
+
+            // 筛选数据  --- 找到满足条件的数据  name中包含了 这个关键字
+            var arr2 = arr.filter(function (v, i) {
+                return v.name.includes(kw);
+
+            })
+            console.log(arr2);
+
+
+
+            var html = '';
+            arr2.forEach(function (v, i) {
+                html += `
+                    <li>
+                        
+                        <h3>${v.name}</h3>
+                        <p>${v.des}</p>
+                        <strong>${v.price}</strong>
+                    </li>
+                `
+            })
+
+            var oUl = document.getElementById('list');
+            oUl.innerHTML = html;
+
+
+        }
+
+
+
+
+        var oType = document.getElementById('type');
+        oType.onclick = function () {
+            // 蛋糕
+            var arr3 = arr.filter(function (v, i) {
+                return v.type === '蛋糕'
+            })
+            var html = '';
+            arr3.forEach(function (v, i) {
+                html += `
+                    <li>
+                        
+                        <h3>${v.name}</h3>
+                        <p>${v.des}</p>
+                        <strong>${v.price}</strong>
+                    </li>
+                `
+            })
+
+            var oUl = document.getElementById('list');
+            oUl.innerHTML = html;
+        }
+
+
+        //油
+        var oYou = document.getElementById('you');
+        oYou.onclick = function () {
+            // 油
+            var arr4 = arr.filter(function (v, i) {
+                return v.type === '油'
+            })
+            var html = '';
+            arr4.forEach(function (v, i) {
+                html += `
+                    <li>
+                        
+                        <h3>${v.name}</h3>
+                        <p>${v.des}</p>
+                        <strong>${v.price}</strong>
+                    </li>
+                `
+            })
+
+            var oUl = document.getElementById('list');
+            oUl.innerHTML = html;
+        }
+
+
+
+
+    </script>
+
+</body>
+
+</html>

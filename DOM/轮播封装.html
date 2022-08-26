@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/banner.css">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="banner">
+        <ul id="list">
+            <li><img src="../img/iTab-4v26m3.jpg" alt=""></li>
+            <li><img src="../img/iTab-62e60e1c29fdbff718b6336b (1).jpg" alt=""></li>
+            <li><img src="../img/iTab-62e60e1c29fdbff718b6336b (2).jpg" alt=""></li>
+            <li><img src="../img/iTab-62e60e1c29fdbff718b6336b.jpg" alt=""></li>
+        </ul>
+        <ol>
+            <li style="background-color:red;"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ol>
+        <span id="prev">&lt;</span>
+        <span id="next">&gt;</span>
+
+    </div>
+    <script>
+        /*
+                总体思路，把图片放在ul里面移动ul的位置
+        */
+
+
+        var index = 0;//控制播放第几张图片
+        var t;//用于清除定时器，
+
+        //获取页面元素
+
+        var Ul = get('list');
+        var Prev = get('prev');
+        var Next = get('next');
+        var List = document.querySelectorAll('ol li');
+
+        //检测是否获取成功
+        // console.log(666);
+
+        //调用自动播放函数
+        autoPlay();
+
+        //给上一张绑定
+        Prev.onclick = function () {
+            //清除定时器
+            clearInterval(t);
+            if (index === 0) {
+                index = 4;
+            }
+            index--;
+            show();
+            autoPlay();
+
+        }
+
+        //给下一张绑定点击函数
+        Next.onclick = function () {
+            //清除定时器，避免高频率事件
+            clearInterval(t);
+            //当播放到最后一张的时候，判断
+            if (index === 3) {
+                //在最后一张的时候，因为先执行播放再回到第一张的位置，所以index=-1，-1+1=0，这样就回到了第一张的位置
+
+                index = -1;
+            }
+            index++;
+            show()
+            autoPlay();
+        }
+
+        //下面的小点
+        //通过循环先清除自身的属性
+        for (var i = 0; i < list.length; i++) {
+            //再给小点添加自定义属性
+            List[i].index = i;
+            //给小点绑定点击事件
+            List[i].onclick = function () {
+                //这里存在异步，也会高频率
+                clearInterval(t);
+                index = this.index;
+                show()
+                autoPlay();
+            }
+        }
+
+
+        //通过函数进行自动播放
+        function autoPlay() {
+            //定时器
+            t = setInterval(function () {
+                index++;
+                //判断最后一张下面的时候回到第一张的位置
+                if (index === 4) {
+                    index = 0;
+                }
+                //调用小点函数
+                show();
+            }, 2000)
+        }
+
+
+        //封装函数，让小点和图片相对应
+        function show() {
+            //任意显示一张图片
+            Ul.style.left = -index * 500 + 'px';
+            //对应小点
+            for (var i = 0; i < List.length; i++) {
+                //小点的初始颜色
+                List[i].style.backgroundColor = '#666'
+            }
+            //对应图片显示的颜色
+            List[index].style.backgroundColor = 'cyan';
+        }
+
+
+
+        function get(id) {
+            return document.getElementById(id);
+        }
+    </script>
+</body>
+
+</html>

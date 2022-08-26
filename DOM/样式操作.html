@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div style="display: flex;">
+        <span>
+            <a href="" class="a"></a>
+        </span>
+    </div>
+    <h1>1111</h1>
+    <script>
+
+        var Div = document.querySelector('div');
+        var Div1 = document.querySelector('h1');
+
+        //通过cssText一次性设置样式
+        Div.style.cssText += 'width:200px;height:200px;background-color:red;';
+        Div1.style.cssText += 'width:400px;height:400px;background-color:cyan;';
+
+        //获取样式
+
+        //获取行内样式
+        console.log(Div.style.width);
+        console.log(Div.style.height);
+        //不是行内样式就获取不到
+
+    </script>
+</body>
+
+</html>
