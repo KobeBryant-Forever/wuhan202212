@@ -1,0 +1,52 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.fdj {
+    width: 1200px;
+    display: flex;
+    margin: auto;
+}
+
+.left {
+    width: 400px;
+    height: 400px;
+    position: relative;
+    /* background-color: cyan; */
+}
+
+.left img {
+    width: 400px;
+    height: 400px;
+
+}
+
+.cover {
+    width: 100px;
+    height: 100px;
+    background-color: rgba(255, 255, 0, .6);
+    position: absolute;
+    left: 0;
+    top: 0;
+    /* overflow: 0; */
+    opacity: 0;
+    pointer-events: none;
+}
+
+.right {
+    width: 400px;
+    height: 400px;
+    overflow: hidden;
+    position: relative;
+    margin-left: 20px;
+    opacity: 0;
+    /* background-color: yellow; */
+}
+
+.right img {
+    width: 1200px;
+    height: 1200px;
+    position: absolute;
+}

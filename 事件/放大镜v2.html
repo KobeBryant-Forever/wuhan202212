@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/fada.css">
+</head>
+
+<body>
+    <div class="fdj">
+        <div class="left">
+            <img src="../img/iTab-4v26m3.jpg" alt=""></img>
+            <div class="cover"></div>
+        </div>
+        <div class="right">
+            <img src="../img/iTab-4v26m3.jpg" alt="">
+        </div>
+    </div>
+</body>
+<script>
+
+    //获取页面元素
+    var Fdj = document.querySelector('.fdj');
+    var Left = Fdj.querySelector('.left');
+    var Cover = Fdj.querySelector('.cover');
+    var Right = Fdj.querySelector('.right');
+    var RightImg = Fdj.querySelector('.right img');
+
+    //计算遮罩层的宽高和移动的坐标范围
+    var r = Cover.offsetWidth / 2;
+    var maxX = Left.clientWidth - Cover.offsetWidth;
+    var maxY = Left.clientHeight - Cover.offsetHeight;
+
+    //放大后图片移动的最大范围
+
+    var rightMaxX = RightImg.clientWidth - Right.offsetWidth;
+    var rightMaxY = RightImg.clientHeight - Right.offsetHeight;
+
+    //放大的比列
+
+    var scale = parseInt(rightMaxX / maxX);
+    console.log(scale);
+    //绑定鼠标事件
+    Left.onmouseover = function () {
+        Cover.style.opacity = 1;
+        Right.style.opacity = 1;
+    }
+    //鼠标移走事件
+
+    Left.onmouseleave = function () {
+        Cover.style.opacity = 0;
+        Right.style.opacity = 0;
+    }
+
+    //鼠标运动事件
+    Left.onmousemove = function (e) {
+        var x = e.offsetX - r;
+        var y = e.offsetY - r;
+        //判断遮罩层的移动范围，避免超出图片范围
+        if (x < 0) x = 0;
+        if (y < 0) y = 0;
+        if (x > maxX) x = maxX;
+        if (y > maxY) y = maxY;
+        Cover.style.cssText += `left:${x}px;top:${y}px`;
+        RightImg.style.cssText += `left:${-x * scale}px;top:${-y * scale}`;
+    }
+</script>
+
+</html>

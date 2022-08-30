@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- <link rel="stylesheet" href="../css/style.css"> -->
+	<title>Document</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+
+		}
+
+		/* 放大前和放大后的总位置 */
+		.fdj {
+			width: 1200px;
+			height: 400px;
+			display: flex;
+			margin: 50px 50px;
+		}
+
+		/* 没放大之前图片的位置 */
+		.left {
+			width: 600px;
+			height: 400px;
+			background-image: url(../img/iTab-dprg8o.jpg);
+			background-size: 100% 100%;
+			position: relative;
+		}
+
+		/* 中间鼠标拖动的那个十字移动 */
+		.back {
+			visibility: hidden;
+			width: 300px;
+			height: 200px;
+			background: rgba(255, 255, 0, .6);
+			cursor: move;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+
+		/* 放大图片显示的位置 */
+		.right {
+			visibility: hidden;
+			flex: 1;
+			margin-left: 10px;
+			background-image: url(../img/iTab-dprg8o.jpg);
+			background-size: 1200px 800px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="fdj">
+		<div class="left">
+			<div class="back"></div>
+		</div>
+		<div class="right"></div>
+	</div>
+	<script>
+		//获取页面元素
+		var back = document.querySelector(".back");
+		var left = document.querySelector(".left");
+		var right = document.querySelector(".right");
+		//鼠标进入事件，放大后显示的位置和那个鼠标拖动的块都显示
+		left.onmouseenter = function () {
+			back.style.visibility = "visible";
+			right.style.visibility = "visible";
+
+
+		}
+		/*鼠标离开事件，放大后显示的位置和那个鼠标拖动的块都隐藏
+
+		*/
+		left.onmouseleave = function () {
+			back.style.visibility = "hidden";
+			right.style.visibility = "hidden";
+		}
+		/*鼠标移动事件*/
+		left.onmousemove = function (e) {
+			//鼠标的坐标的计算
+			var x = e.clientX - 150 - left.offsetLeft;
+			var y = e.clientY - 100 - left.offsetTop;
+			//鼠标坐标位置的判断，移动方块位置的判断，避免超出图片区域
+			if (x < 0) {
+				x = 0;
+			}
+			if (x > 300) {
+				x = 300;
+			}
+			if (y < 0) {
+				y = 0;
+			}
+			if (y > 200) {
+				y = 200;
+			}
+			//放大图片后对应的宽高
+			back.style.top = y + "px";
+			back.style.left = x + "px";
+			//右边显示区域大小的限制，反向移动，
+			right.style.backgroundPositionX = (-x * 2) + "px";
+			right.style.backgroundPositionY = (-y * 2) + "px";
+		}
+	</script>
+</body>
+
+</html>

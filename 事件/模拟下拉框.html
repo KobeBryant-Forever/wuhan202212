@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .select {
+            width: 100px;
+            margin: 30px auto;
+            text-align: center;
+        }
+
+        p {
+            line-height: 40px;
+            border: 1px solid #000;
+        }
+
+        ul {
+            display: none;
+        }
+
+        li {
+            line-height: 40px;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="select">
+        <p>选择</p>
+        <ul>
+            <li>上课</li>
+            <li>睡觉</li>
+            <li>撸代码</li>
+            <li>摸鱼</li>
+        </ul>
+
+    </div>
+    <script>
+
+        /*
+阻止事件冒泡：防止子元素的时事件触发也会触发父元素的同类型事件
+
+
+
+        */
+
+        //获取
+
+        var oP = document.querySelector('p');
+        var oUl = document.querySelector('ul');
+        var oList = document.querySelectorAll('li');
+
+        //事件监听
+        oP.addEventListener('click', function (e) {
+            oUl.style.display = 'block';
+        })
+
+        oP.onclick = function (e) {
+            e = e || event;
+            // 阻止事件冒泡
+            if (e.stopPropagation) {
+                e.stopPropagation();
+            } else {
+                // IE8 及以下兼容写法
+                e.cancelBubble = true;
+            }
+            oUl.style.display = 'block';
+        }
+
+
+        //
+        for (var i = 0; i < oList.length; i++) {
+            oList[i].addEventListener('click', function () {
+                oP.innerHTML = this.innerHTML;
+                oUl.style.display = 'none'
+            })
+        }
+        document.onclick = function () {
+            oUl.style.display = 'none'
+        }
+    </script>
+</body>
+
+</html>

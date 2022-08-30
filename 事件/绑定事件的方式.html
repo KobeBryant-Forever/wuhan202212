@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body onclick="fn">
+    点我
+    <script>
+        /*绑定事件的方式
+            1、行内事件/：<body/ onclick = 'fn'>;
+            2、js中 找到相应的对象，进行事件绑定
+    
+            第一种和第二种绑定事件最终只会留一个，后面的会覆盖前面的，涉及到事件冒泡和事件捕获流
+            3、事件监听:addEventListener(type,fn),type代表事件类型，
+    
+    
+            DOM事件
+                1、0级事件  行内事件 onclick  --会有覆盖
+                2、2级事件  事件监听 ---不会有覆盖
+    
+    
+                */
+
+        // document.body.onclick = function () {
+        //     console.log(6666);
+        // }
+
+        // document.body.onclick = function () {
+        //     console.log(9999);
+        // }
+
+
+        //事件监听就不会覆盖
+
+        document.body.addEventListener('click', function () {
+            console.log(8888);
+        })
+        document.body.addEventListener('click', function () {
+            console.log(88);
+        })
+        function fn() {
+            console.log(555);
+        }
+    </script>
+</body>
+
+</html>

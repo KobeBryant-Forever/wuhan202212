@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+
+        .box {
+            width: 500px;
+            height: 60px;
+            position: relative;
+            left: 50%;
+            margin-left: -250px;
+            margin-top: 50px;
+            background: #eae4e4;
+            display: flex;
+            align-items: center;
+
+        }
+
+        .btn {
+            height: 100%;
+            width: 60px;
+            background: #000;
+            box-sizing: border-box;
+            border: 2px solid #cecaca;
+            position: absolute;
+            left: 0;
+            top: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+            color: #d5d4d4;
+            z-index: 999;
+            user-select: none;
+        }
+
+        .btn:hover {
+            /* 鼠标悬停在滑块上变成小手 */
+            cursor: pointer;
+        }
+
+        .text {
+            font-size: 20px;
+            position: absolute;
+            left: 50%;
+            margin-left: -60px;
+            background-color: transparent;
+            z-index: 2;
+        }
+
+        .bg {
+            height: 100%;
+            position: absolute;
+            background-color: #4cbb42;
+            /* z-index: 1; */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="btn">&gt;&gt;&gt;</div>
+        <p class="text">拖动滑块验证</p>
+        <div class="bg"></div>
+    </div>
+</body>
+<script>
+    // 验证成功
+    // 验证失败
+    // 触发事件 onmousedown按下  onmousemove移动  onmouseup松开
+    var btn = qs('.btn') // 滑块  对IE6/7 有兼容性问题
+    var box = qs('.box') // box
+    var text = qs('.text') // 文字
+    var bg = qs('.bg') // 背景
+    var e;
+    box.onmousedown = function (e) {
+        e = e || event;
+        // event.clientX;clientY   鼠标当前X轴Y轴坐标
+        var downX = e.clientX
+        // console.log(downX)
+        document.onmousemove = function (e) {
+            // 移动的X坐标 - 按下的X坐标
+            var moveX = e.clientX - downX
+            var boxWidth = box.offsetWidth
+            var btnWidth = btn.offsetWidth
+            if (moveX >= 0 && moveX <= (boxWidth - btnWidth)) { // 可移动的范围
+                btn.style.left = moveX + 'px' // 滑块绝对定位
+                bg.style.width = moveX + 'px' // 设备背景的宽度
+            }
+            if (moveX >= (boxWidth - btnWidth)) {
+                btn.style.left = (boxWidth - btnWidth) + 'px' // 滑块绝对定位
+                bg.style.width = (boxWidth - btnWidth) + 'px' // 设备背景的宽度
+                // 文字提醒
+                text.innerText = '验证成功'
+                text.style.color = '#fff'
+                // 事件清除-按下、移动  
+                btn.onmousedown = null
+                document.onmousemove = null
+                // btn.onmouseup = null
+            }
+        }
+        document.onmouseup = function (e) {
+            // 还没验证成功松开后回到原点
+            // 清除移动事件
+            btn.style.left = 0 + 'px'
+            bg.style.width = 0 + 'px'
+            document.onmousemove = null
+            btn.onmousedown = null;
+            document.onmouseup = null;
+        }
+    }
+
+
+    //封装获取元素函数
+    function qs(name) {
+        return document.querySelector(name);
+    }
+</script>
+
+</html>

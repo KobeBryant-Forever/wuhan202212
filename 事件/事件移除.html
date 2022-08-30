@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <div class="a">123</div> -->
+    <button>立即购买</button>
+    <script>
+        var ol = document.querySelector('button')
+        document.onclick = function (e) {
+
+        }
+        ol.addEventListener('click', function (e) {
+            console.log(e.target);
+            console.log(this);
+        })
+        /*
+        DOM 0级事件的移除 覆盖。onclick = null;
+        DOM 2级事件的移除 无法覆盖
+            必须写具名函数，通过removeEventListener(type,fn),一个一个的清除
+
+        */
+
+        // var oBtn = document.querySelector('button');
+        // //绑定点击事件
+        // oBtn.onclick = function () {
+        //     console.log(666);
+        // }
+
+        // //延时器
+        // setTimeout(function () {
+        //     //2秒之后才能点第二次
+        //     oBtn.onclick = null;
+        // }, 3000)
+        // var oDiv = document.querySelector('button')
+        // console.log(oDiv);
+        // oDiv.addEventListener('click', function (e) {
+        //     console.log(e.target);
+
+        //     console.log(this);
+
+        // })
+
+
+    </script>
+</body>
+
+</html>
