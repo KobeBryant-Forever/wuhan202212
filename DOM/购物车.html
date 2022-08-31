@@ -14,7 +14,7 @@
     <div class="cart">
         <div class="cart-hd">
             <span>
-                <input type="checkbox" class="check">
+                <input type="checkbox" class="check" style="cursor: pointer;">
                 全选
             </span>
             <span>图片</span>
@@ -88,7 +88,7 @@
             html += `
              <li>
                 <span>
-                    <input type="checkbox" class="one">
+                    <input type="checkbox" class="one" style="cursor: pointer;">
                 </span>
                 <span>
                     <img src="${v.good_Img}" alt="">
@@ -96,12 +96,12 @@
                 <span>${v.good_Name}</span>
                 <span>${v.good_Price}</span>
                 <span>
-                    <span class="reduce ${v.good_Num == 1 ? 'off' : ''}">-</span>
+                    <span style="cursor: pointer;" class="reduce ${v.good_Num == 1 ? 'off' : ''}">-</span>
                     <input type="text" class="num" value="${v.good_Num}">
-                    <span class="add">+</span>
+                    <span style="cursor: pointer;" class="add">+</span>
                 </span>
                 <span>${v.good_Num * v.good_Price}</span>
-                <span class ="del">删除</span>
+                <span style="cursor: pointer;" class ="del">删除</span>
             </li>
             `
         })

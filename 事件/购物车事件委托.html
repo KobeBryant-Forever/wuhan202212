@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        body {
+            background-color: #eee;
+        }
+
+        .cart {
+            width: 1100px;
+            margin: auto;
+            background-color: #fff;
+            text-align: center;
+            line-height: 50px;
+        }
+
+        .cart-hd {
+            display: flex;
+        }
+
+        .cart-hd p {
+            flex: 1;
+            height: 50px;
+            border-bottom: 1px solid #000;
+        }
+
+        .cart-bd li {
+            display: flex;
+        }
+
+        .cart-bd p {
+            flex: 1;
+            height: 50px;
+            border-bottom: 1px solid #000;
+        }
+
+        .cart-bd p:nth-child(3),
+        .cart-hd p:nth-child(3) {
+            flex: 2;
+            padding: 0 10px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            text-align: left;
+        }
+
+        .cart-bd img {
+            width: 30px;
+            height: 30px;
+            vertical-align: middle;
+        }
+
+        .num {
+            width: 50px;
+            vertical-align: middle;
+        }
+
+        .add,
+        .reduce {
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            display: inline-block;
+            background-color: orange;
+            line-height: 20px;
+            vertical-align: middle;
+        }
+
+        .off {
+            background-color: #ddd;
+        }
+
+        .empty {
+            display: none;
+        }
+
+
+        .del span {
+            /* 不成为触发事件的对象 */
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="cart">
+        <div class="cart-hd">
+            <p>
+                <input type="checkbox" class="checkAll" style="cursor: pointer;">全选
+            </p>
+            <p>图片</p>
+            <p>商品名称</p>
+            <p>单价</p>
+            <p>数量</p>
+            <p>小计</p>
+            <p>操作</p>
+        </div>
+        <div class="cart-bd">
+            <ul>
+                <li>
+                    <p>1</p>
+                    <p>2</p>
+                    <p>kebi</p>
+                    <p>4</p>
+                    <p>5</p>
+                    <p>6</p>
+                    <p>7</p>
+                </li>
+            </ul>
+        </div>
+        <div class="cart-ft">
+            <p class="delAll" style="cursor: pointer;">批量删除</p>
+            <p>数量小计：<strong class="total">0</strong></p>
+            <p>价格小计: <strong class="money">0</strong></p>
+        </div>
+    </div>
+
+
+    <h1 class="empty">购物车空空如也，<a href="">请继续挑选</a></h1>
+
+    <script>
+
+
+        // 小计封装函数
+
+        // 在单删的时候，反选可能发生改变
+
+        // 在单删和批量删除的时候，oOnes的数量会发生改变，需要重新获取  之后再小计
+
+        // 如果全部删除了   就不显示购物车   显示空空如也
+
+
+
+
+
+
+        //获取元素
+        var oDiv = document.querySelector('.cart');
+        var oUl = oDiv.querySelector('ul');
+
+        //接收数据
+        var key = {
+            msg: '数据请求成功',
+            code: 0,
+            list: [
+
+                {
+                    goods_name: '小米巨能写中性笔10支装 黑色 10支装',
+                    goods_img: 'https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1559616366.16874615.jpg?thumb=1&w=90&h=90',
+                    goods_num: 3,
+                    goods_price: 9.99
+                },
+                {
+                    goods_name: '小米巨能写中性笔10支装 黑色 10支装',
+                    goods_img: 'https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1559616366.16874615.jpg?thumb=1&w=90&h=90',
+                    goods_num: 3,
+                    goods_price: 9.99
+                },
+                {
+                    goods_name: 'Redmi 手表 2 深空蓝',
+                    goods_img: 'https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202204211508_976de563d2d261ea20583e0a26bd052a.png?thumb=1&w=90&h=90&f=webp&q=90',
+                    goods_num: 2,
+                    goods_price: 379
+                },
+                {
+                    goods_name: 'Redmi K50 至尊版 8GB+128GB 雅黑',
+                    goods_img: 'https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202208101508_df890f7fafc29921ded695b2af591190.png?thumb=1&w=90&h=90&f=webp&q=90',
+                    goods_num: 1,
+                    goods_price: 2799
+                },
+                {
+                    goods_name: '小米手环7 腕带 活力橙',
+                    goods_img: 'https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202205240049_b5a667f5e7ec7e57154a100001a0bcac.png?thumb=1&w=90&h=90&f=webp&q=90',
+                    goods_num: 1,
+                    goods_price: 19.9
+                },
+                {
+                    goods_name: '小米巨能写中性笔10支装 黑色 10支装',
+                    goods_img: 'https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1559616366.16874615.jpg?thumb=1&w=90&h=90',
+                    goods_num: 3,
+                    goods_price: 9.99
+                }
+            ]
+        };
+
+
+
+        // 模拟异步
+        setTimeout(function () {
+            // 动态生成 购物车列表
+            var html = '';
+            key.list.forEach(function (v, i) {
+                html += `
+                <li>
+                    <p>
+                        <input type="checkbox" class="one" style='cursor: pointer;'>
+                    </p>
+                    <p><img src="${v.goods_img}" alt=""></p>
+                    <p>${v.goods_name}</p>
+                    <p>${v.goods_price}</p>
+                    <p>
+                        <span style='cursor: pointer;' class="reduce" ${v.goods_num == 1 ? 'off' : ''} >-</span>
+                        <input class="num" type="text" value="${v.goods_num}" data-num="${v.goods_num}">
+                        <span  class="add" style='cursor: pointer;'>+</span>
+                    </p>
+                    <p class="priceAll">${v.goods_price * v.goods_num}</p>
+                    <p class="del"style='cursor: pointer;'><span>删除</span></p>
+                </li>    
+                `;
+            })
+
+            oUl.innerHTML = html;
+
+        }, 0)
+
+
+
+
+
+        // 事件委托给cart
+
+        // 把this都需要替换成  target
+
+        var oCart = document.querySelector('.cart');
+
+        var oOnes;   // 涉及到了异步，涉及到作用域   -- 提取为全局变量
+
+        var oCount = document.querySelector('.total');   // 全局变量
+        var oMoney = document.querySelector('.money');
+
+        // 获取不到了  ， 也无法绑定事件
+        // var oOnes = document.querySelectorAll('.one');
+        // console.log(oOnes);
+
+
+        // 事件委托  --- 可以给将来的对象添加事件绑定
+        oCart.onclick = function (e) {
+            oOnes = document.querySelectorAll('.one');
+            var oAll = document.querySelector('.checkAll');
+            e = e || event;
+            var target = e.target || e.srcElement;
+
+            // 全选
+            if (target.className === 'checkAll') {    // 在绑定事件
+                for (var i = 0; i < oOnes.length; i++) {
+                    oOnes[i].checked = target.checked;
+                }
+                total();
+                return;
+            }
+
+            // 反选
+            if (target.className === 'one') {   // 绑定事件
+                for (var i = 0; i < oOnes.length; i++) {
+                    if (!oOnes[i].checked) {
+                        break;
+                    }
+                }
+                oAll.checked = i === oOnes.length;
+                total();
+                return;
+            }
+
+            // 删除
+            if (target.className === 'del') {
+                // // 不要嵌套子元素,如果嵌套了  target会变成子元素
+                //  如果必须要嵌套，可以给这个子元素   加   pointer-events:none
+                target.parentElement.remove();
+                oOnes = document.querySelectorAll('.one');  // 删除了之后one的个数发生了改变
+                for (var i = 0; i < oOnes.length; i++) {
+                    if (!oOnes[i].checked) {
+                        break;
+                    }
+                }
+                oAll.checked = i === oOnes.length;
+                if (oOnes.length === 0) {
+                    // alert('空')
+                    // 隐藏购物车
+                }
+                total();
+                return;
+
+            }
+
+            // 批量删除
+            if (target.className === 'delAll') {
+                for (var i = 0; i < oOnes.length; i++) {
+                    if (oOnes[i].checked) {
+                        oOnes[i].parentElement.parentElement.remove()
+                    }
+                }
+                oOnes = document.querySelectorAll('.one');   // 删除了之后one的个数发生了改变
+                if (oOnes.length === 0) {
+                    // alert('空')
+                    // 隐藏购物车
+                }
+                total();
+                return;
+            }
+
+
+
+            if (target.className === 'add') {
+                target.previousElementSibling.value++;
+                target.parentElement.nextElementSibling.innerHTML = (target.previousElementSibling.value * target.parentElement.previousElementSibling.innerHTML * 1).toFixed(2);
+                // 给减号添加颜色
+                if (target.previousElementSibling.previousElementSibling.classList.contains('off')) {
+                    target.previousElementSibling.previousElementSibling.classList.remove('off');
+                }
+
+                pd(target.previousElementSibling.value, target.previousElementSibling);
+            }
+
+
+            if (target.className === 'reduce') {
+                target.nextElementSibling.value--;
+                target.parentElement.nextElementSibling.innerHTML = (target.nextElementSibling.value * target.parentElement.previousElementSibling.innerHTML * 1).toFixed(2);
+                // 给减号添加颜色
+                if (target.nextElementSibling.nextElementSibling.classList.contains('off')) {
+                    target.nextElementSibling.nextElementSibling.classList.remove('off');
+                }
+
+                pd(target.nextElementSibling.value, target.nextElementSibling);
+            }
+
+
+            // if (target.className === 'reduce') {
+            //     if (target.nextElementSibling.value === 1) {
+            //         alert('')
+            //     } else {
+            //         target.nextElementSibling.value--;
+            //     }
+            // }
+        }
+
+
+
+
+
+
+
+
+        // 表单事件
+        oCart.onchange = function (e) {
+            var target = e.target || e.srcElement;
+            if (target.className === 'num') {
+                var num = target.value;
+                pd(num, target);
+            }
+        }
+
+
+
+        // 键盘事件
+        oCart.onkeydown = function (e) {
+            var target = e.target || e.srcElement;
+            if (target.className === 'num') {
+                if (e.keyCode === 13) {
+                    var num = target.value;
+                    pd(num, target);
+                    target.blur()
+                }
+
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+        // 小计    判断单选是否勾选   在每一个事件中都需要统计
+        function total() {
+
+            // 当页面删除了一个数据之后，变量oOnes没有更新  所以需要重新获取
+            // oOnes = oDiv.querySelectorAll('.one');
+            console.log(oOnes);
+            var count = 0;
+            var priceAll = 0;
+            for (var i = 0; i < oOnes.length; i++) {
+                if (oOnes[i].checked) {
+                    count += oOnes[i].parentElement.parentElement.querySelector('.num').value * 1;
+                    priceAll += oOnes[i].parentElement.parentElement.querySelector('.priceAll').innerHTML * 1;
+                }
+            }
+
+            oCount.innerHTML = count;
+            oMoney.innerHTML = priceAll;
+        }
+
+
+
+
+        function pd(num, ele) {
+            // 判断是不是数字
+            if (isNaN(num)) {
+                ele.value = ele.getAttribute('data-num');
+                alert('请输入数字')
+            }
+            // 正整数
+            else if (num < 1 || num % 1 !== 0) {
+                ele.value = ele.getAttribute('data-num');
+                alert('数量必须是正整数')
+            }
+            else {
+                // 把index 的值更新
+                ele.setAttribute('data-num', num);
+            }
+        }
+
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .range {
+            width: 100px;
+            height: 100px;
+            background-color: #f00;
+            position: absolute;
+            bottom: 0;
+            cursor: pointer;
+        }
+
+        .black {
+            width: 100px;
+            height: 100px;
+            background-color: #000;
+            position: absolute;
+            left: 200px;
+            top: 200px;
+        }
+
+        .tips {
+            width: 100px;
+            height: 100px;
+            background-color: #ff0;
+            position: absolute;
+            left: 0;
+            top: 200px;
+            z-index: 1;
+            overflow: hidden;
+            background: url(../img/iTab-62e60e1c29fdbff718b6336b.jpg) no-repeat;
+            background-size: 500px 500px;
+        }
+
+
+
+        .box {
+            width: 500px;
+            height: 500px;
+            border: 10px solid #000;
+            margin: auto;
+            position: relative;
+
+            /* 禁止用户选中 */
+            user-select: none;
+
+            background: url(../img/iTab-62e60e1c29fdbff718b6336b.jpg) no-repeat;
+            background-size: 100% 100%;
+
+
+        }
+
+        /* .box img {
+            width: 500px;
+            height: 500px;
+        } */
+    </style>
+</head>
+
+<body>
+
+    <div class="box">
+        <!-- <img src="../images/dog.jpg" alt=""> -->
+        <div class="range">滑块</div>
+        <div class="tips">
+            <!-- <img src="../images/dog.jpg" alt=""> -->
+        </div>
+        <div class="black"></div>
+    </div>
+
+
+    <script>
+
+        // 拖拽
+        //   鼠标按下   onmousedown
+        //   鼠标移动   onmousemove
+        //   鼠标抬起   onmouseup       绑定给document
+
+        //   事件给谁绑定
+
+
+
+        // 滑动验证
+        //    黑色盒子随机left / top
+        //    黄色盒子的top跟黑色盒子一样    left:0
+
+
+        //   滑动
+        //    红色盒子和黄色盒子都需要移动
+
+
+        //   up的时候才做验证
+        //     失败：重新生成位置，且红色盒子和黄色要回到原点
+
+
+
+        // 注意：
+        //   拖拽中尽量禁用选中效果     -webkit-user-select: none;
+        //   拖拽中需要使用图片，尽量使用背景图   
+
+        var oRange = qs('.range');
+        var oBox = qs('.box');
+        var oTips = qs('.tips');
+        var oBlack = qs('.black');
+
+        var left = oBox.offsetLeft;
+        // 获取的是边框的粗细
+        var bd = getCss(oBox, 'border-width');
+        console.log(bd);
+
+
+        var maxX = oBox.clientWidth - oRange.offsetWidth;
+
+
+
+        randPostion();
+
+
+
+
+        // 鼠标按下 在盒子中按下
+        oRange.onmousedown = function (e) {
+            e = e || event;
+            // 找到鼠鼠标在盒子中的位置
+            var gapX = e.offsetX;
+
+            // 鼠标跟随
+            oBox.onmousemove = function (e) {
+                e = e || event;
+                var x = e.x - gapX - left - bd;
+                if (x < 0) x = 0;
+                if (x > maxX) x = maxX;
+                // 滑块移动    提示框也需要移动
+                oRange.style.left = x + 'px';
+                oTips.style.left = x + 'px';
+
+
+            }
+
+            document.onmouseup = function () {
+                // 清除鼠标跟随
+                oBox.onmousemove = null;
+                document.onmouseup = null;
+
+                if (oRange.offsetLeft === 0) {
+                    return
+                }
+
+                // 验证
+                if (Math.abs(oTips.offsetLeft - oBlack.offsetLeft) <= 2) {
+                    alert('ok');
+                } else {
+                    oRange.style.left = 0;
+                    oTips.style.left = 0;
+                    // 重新随机位置
+
+                    randPostion();
+                }
+            }
+        }
+
+
+
+        // 随机黑色盒子的位置
+        function randPostion() {
+            var x = rand(100, maxX);
+            var y = rand(0, maxX - 100);
+            oBlack.style.cssText = `left:${x}px;top:${y}px`;
+            // oTips.style.top = y + 'px';
+            oTips.style.cssText = `top:${y}px;background-position:${-x}px ${-y}px`;
+        }
+
+
+
+
+        // ele 元素    attr 属性
+        function getCss(ele, attr) {
+            if (window.getComputedStyle) {
+                // 取数字部分    opacity  0.5
+                return parseFloat(getComputedStyle(ele)[attr]);
+            }
+            return parseFloat(ele.currentStyle(attr));
+        }
+
+        function rand(min, max) {
+            return parseInt(Math.random() * (max - min) + min);
+        }
+        //封装获取元素函数
+        function qs(name) {
+            return document.querySelector(name);
+        }
+    </script>
+
+</body>
+
+</html>
